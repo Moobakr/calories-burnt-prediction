@@ -1,4 +1,4 @@
-"""Commands for reproducibility; training is intentionally a later milestone."""
+"""Reproducible preparation, frozen evaluation and development baseline commands."""
 
 import argparse
 import csv
@@ -99,6 +99,8 @@ def main(argv=None):
         splitting = commands.add_parser(name, help=help_text)
         splitting.add_argument("--prepared-dir", type=Path)
         splitting.add_argument("--split-dir", type=Path)
+    training = commands.add_parser("baselines", help="Fit mean and Ridge using development folds only")
+    training.add_argument("--run-dir", type=Path, default=ROOT / "runs/baselines-v1")
     args = parser.parse_args(argv)
     try:
         config, manifest = load_project()
@@ -115,6 +117,10 @@ def main(argv=None):
         elif args.command == "prepare":
             result = prepare(args.data or ROOT / config["raw_csv"],
                              args.output_dir or ROOT / config["processed_dir"], manifest, fingerprints())
+        elif args.command == "baselines":
+            from .baselines import run_baselines
+            result = run_baselines(ROOT / config["processed_dir"], ROOT / config["split_dir"],
+                                   args.run_dir, config, manifest, doctor(require_ml=True))
         else:
             from .evaluation import create_splits, verify_splits
             prepared_dir = args.prepared_dir or ROOT / config["processed_dir"]

@@ -21,3 +21,9 @@ cv_folds = 5
 bootstrap_seed = 2026
 bootstrap_resamples = 2000
 competitive_relative_mae_margin = 0.10
+
+# Frozen before item 5 benchmark fitting; tuning uses development MAE only.
+[baselines]
+ridge_alphas = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+ridge_solver = "svd"
+threads = 1

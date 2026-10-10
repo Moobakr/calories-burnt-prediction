@@ -10,9 +10,12 @@ Research question: how much does prediction error change when heart rate and
 body temperature are removed, and how does that change vary across represented
 groups and workout durations?
 
-**Status:** items 3 and 4 provide reproducible preparation, frozen partitions,
-shared development CV folds, and unfitted preprocessing. **29 tests pass.**
-Model training and performance results belong to later items.
+**Status:** items 3–5 provide reproducible preparation, frozen partitions,
+shared development CV folds, and fitted mean/Ridge baselines. **36 tests pass.**
+Full-input Ridge achieved development CV MAE **8.303**, versus **52.833** for
+the training-target mean. These are development results; Ridge scores reuse
+the alpha-selection folds. Calibration and test evaluation remain deferred.
+See [baseline results](docs/BASELINE_RESULTS.md) for all input sets and limits.
 The target is the supplied benchmark's recorded calorie label. Collection
 methods, label generation, and dataset licensing remain unresolved.
 
@@ -25,7 +28,7 @@ commands explicitly use the isolated environment.
 ```powershell
 & .\scripts\setup.ps1 -Python python
 & .\.venv\Scripts\python.exe -m calorie_estimation stage --source "B:\calories\exercise.csv" --notebook "B:\calories\Calories_burnt_prediction_project.ipynb"
-& .\scripts\evaluate-setup.ps1
+& .\scripts\baselines.ps1
 ```
 
 Substitute your own CSV path. `--notebook` is optional. If PowerShell blocks
@@ -42,7 +45,7 @@ in `requirements.lock.txt`, installs this project in editable mode, runs
 `pip check`, and checks every pinned version plus imports of the ML libraries.
 Python 3.12 is required; the verified patch version is recorded in the report.
 The lock records versions, not wheel hashes. Other platforms are unverified;
-future ML fits may differ across hardware or library builds.
+ML fits may differ across hardware or library builds.
 
 `prepare.ps1` validates the data, runs synthetic integrity tests, and writes:
 
@@ -77,6 +80,7 @@ python -m venv .venv
 & .\.venv\Scripts\python.exe -m calorie_estimation prepare
 & .\.venv\Scripts\python.exe -m calorie_estimation split
 & .\.venv\Scripts\python.exe -m calorie_estimation verify-splits
+& .\.venv\Scripts\python.exe -m calorie_estimation baselines --run-dir runs/baselines-v1
 ```
 
 `validate --data PATH` and `prepare --data PATH --output-dir PATH` support
@@ -92,12 +96,21 @@ Existing allocations are protected against silent changes. See the
 [evaluation protocol](docs/EVALUATION_PROTOCOL.md) for the exact algorithm,
 allowed use of each partition, and preprocessing requirements.
 
+`baselines.ps1` runs that setup workflow, then evaluates the training-target
+mean and six Ridge alpha settings for each input set, using development rows
+only. It selects Ridge alpha by mean-fold MAE and saves five development-fitted
+pipelines with provenance and selected OOF predictions inside `runs/`.
+Each run directory must be new; repeat with `-RunDirectory runs/baselines-repeat-1`.
+Artifacts remain local and Git-ignored. The tracked
+[aggregate metrics](docs/BASELINE_METRICS.json) contain candidate/fold scores,
+versions, fit times, and source fingerprints, without per-record observations.
+
 ## Project map
 
 | Location | Purpose |
 | --- | --- |
-| `calorie_estimation/` | Validation, preparation, frozen evaluation, unfitted preprocessing and environment checks |
-| `configs/project.toml` | Four input sets and planned evaluation settings |
+| `calorie_estimation/` | Validation, preparation, frozen evaluation, pipeline preprocessing, baseline fitting and environment checks |
+| `configs/project.toml` | Four input sets, frozen evaluation settings and baseline alpha grid |
 | `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
 | `tests/` | Synthetic fixtures for failure modes and repeatability |
 | `docs/` | Audit, research brief, experiment plan and implementation verification |

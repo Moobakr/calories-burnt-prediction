@@ -1,6 +1,6 @@
 # Experiment plan
 
-Version 1.1 — 10 October 2026. Preparation and partitioning are implemented; no new benchmark models have been trained.
+Version 1.2 — 10 October 2026. Item 5 adds the baseline fitting settings below before new benchmark fitting. See BASELINE_RESULTS.md for the subsequent implementation and development results.
 
 ## 1. Scope and hypotheses
 
@@ -41,6 +41,10 @@ The calibration partition is reserved for item 7's uncertainty method. The test 
 | XGBoost regression | Nonlinear comparison | Budget of 30 randomized configurations per input set |
 
 Use the same algorithm-specific budget for each input set. Record model versions, random seeds, CPU/thread settings, fit time, and fitted parameters. Use scaling for Ridge inside its pipeline. Avoid redundant external scaling. Any early stopping must use development data only.
+
+Item 5 baseline protocol, fixed before benchmark fitting: Ridge alpha grid `[0.01, 0.1, 1, 10, 100, 1000]`, SVD solver, fitted intercept, and one CPU thread. Select the lowest unweighted mean of the five validation-fold MAEs; exact ties choose the smaller alpha. Standardize numeric inputs within each training fold and use the schema-defined gender encoding. The mean baseline uses each fold's training-target mean and has no input requirement. It is evaluated once because its predictions are identical across input sets. There is no stochastic estimator seed for either baseline.
+
+Record all candidate/fold scores and fit times. Retain development out-of-fold predictions for the selected settings locally; report both mean-fold scores and pooled out-of-fold scores with distinct names. The selected Ridge CV scores reuse the alpha-selection folds and may be optimistic after tuning; they are development estimates, not an independent generalization estimate. Refit each selected pipeline on all 8,999 development rows, save it locally with provenance, and verify save/load prediction parity. Neither calibration nor test data enter fitting or scoring. Final evaluation remains deferred until model choices are frozen.
 
 At first, compare the input sets within each algorithm so input effects are not confused with changes of model family. A final best system may also be selected using development scores, with the selection rule documented before test evaluation.
 
