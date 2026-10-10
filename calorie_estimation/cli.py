@@ -104,6 +104,10 @@ def main(argv=None):
     comparison = commands.add_parser("compare-inputs", help="Run matched development-only XGBoost search and comparisons")
     comparison.add_argument("--baseline-run-dir", type=Path, default=ROOT / "runs/baselines-v1")
     comparison.add_argument("--run-dir", type=Path, default=ROOT / "runs/input-comparison-v1")
+    reliability = commands.add_parser("reliability", help="Audit frozen models and calibrate/audit 90% intervals without using test data")
+    reliability.add_argument("--baseline-run-dir", type=Path, default=ROOT / "runs/baselines-v1")
+    reliability.add_argument("--comparison-run-dir", type=Path, default=ROOT / "runs/input-comparison-v1")
+    reliability.add_argument("--run-dir", type=Path, default=ROOT / "runs/reliability-v1")
     args = parser.parse_args(argv)
     try:
         config, manifest = load_project()
@@ -129,6 +133,12 @@ def main(argv=None):
             result = run_comparison(ROOT / config["processed_dir"], ROOT / config["split_dir"],
                                     args.baseline_run_dir, args.run_dir, config, manifest, doctor(require_ml=True),
                                     progress=lambda message: print(message, file=sys.stderr, flush=True))
+        elif args.command == "reliability":
+            from .reliability import run_reliability
+            result = run_reliability(ROOT / config["processed_dir"], ROOT / config["split_dir"],
+                                     args.baseline_run_dir, args.comparison_run_dir, args.run_dir,
+                                     config, manifest, doctor(require_ml=True),
+                                     progress=lambda message: print(message, file=sys.stderr, flush=True))
         else:
             from .evaluation import create_splits, verify_splits
             prepared_dir = args.prepared_dir or ROOT / config["processed_dir"]

@@ -48,3 +48,13 @@ subsample = [0.8, 1.0]
 colsample_bytree = [0.8, 1.0]
 reg_lambda = [1.0, 5.0, 10.0]
 reg_alpha = [0.0, 0.1, 1.0]
+
+# Fixed before calibration labels are used in item 7.
+[reliability]
+nominal_coverage = 0.90
+calibration_role_seed = 46
+noise_seed = 47
+noise_draws = 20
+threads = 1
+heart_rate_noise_sd = [2.0, 5.0]
+temperature_noise_sd = [0.1, 0.3]

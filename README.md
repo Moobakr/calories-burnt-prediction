@@ -10,13 +10,16 @@ Research question: how much does prediction error change when heart rate and
 body temperature are removed, and how does that change vary across represented
 groups and workout durations?
 
-**Status:** items 3–6 provide reproducible preparation, frozen partitions,
+**Status:** items 3–7 provide reproducible preparation, frozen partitions,
 shared development CV folds, mean/Ridge baselines and a matched XGBoost input
-comparison. **42 tests pass.** See [the input comparison](docs/INPUT_COMPARISON.md)
+comparison, plus subgroup, sensor-noise and prediction-interval audits.
+**52 tests pass.** See [the reliability report](docs/RELIABILITY_REPORT.md)
+for observed coverage gaps and noise sensitivity, [the input comparison](docs/INPUT_COMPARISON.md)
 for error versus input requirements, prediction timings and limitations, or
 [baseline results](docs/BASELINE_RESULTS.md) for the earlier linear milestone.
-Scores are development tuning estimates; calibration and test evaluation
-remain deferred. The final system and real-world usefulness are not established.
+Development scores are tuning estimates. Calibration uses separate 1,500-row
+interval-fit and interval-audit subsets; final test evaluation remains deferred.
+The final system and real-world usefulness are not established.
 The target is the supplied benchmark's recorded calorie label. Collection
 methods, label generation, and dataset licensing remain unresolved.
 
@@ -30,6 +33,7 @@ commands explicitly use the isolated environment.
 & .\scripts\setup.ps1 -Python python
 & .\.venv\Scripts\python.exe -m calorie_estimation stage --source "B:\calories\exercise.csv" --notebook "B:\calories\Calories_burnt_prediction_project.ipynb"
 & .\scripts\compare-inputs.ps1
+& .\scripts\reliability.ps1
 ```
 
 Substitute your own CSV path. `--notebook` is optional. If PowerShell blocks
@@ -83,6 +87,7 @@ python -m venv .venv
 & .\.venv\Scripts\python.exe -m calorie_estimation verify-splits
 & .\.venv\Scripts\python.exe -m calorie_estimation baselines --run-dir runs/baselines-v1
 & .\.venv\Scripts\python.exe -m calorie_estimation compare-inputs --baseline-run-dir runs/baselines-v1 --run-dir runs/input-comparison-v1
+& .\.venv\Scripts\python.exe -m calorie_estimation reliability --baseline-run-dir runs/baselines-v1 --comparison-run-dir runs/input-comparison-v1 --run-dir runs/reliability-v1
 ```
 
 `validate --data PATH` and `prepare --data PATH --output-dir PATH` support
@@ -117,12 +122,23 @@ The [aggregate comparison metrics](docs/INPUT_COMPARISON_METRICS.json) and
 [PNG chart](docs/input_comparison.png) contain no new per-record observations.
 Fitted pipelines and selected OOF records remain local under `runs/`.
 
+`reliability.ps1` requires those completed baseline/comparison runs. It replays
+the eight selected systems on the original folds (40 fits, no new search),
+checks subgroup errors and paired simulated sensor noise, and fits fixed
+90%-nominal split-conformal intervals using half the calibration partition.
+The other half provides a disjoint interval audit. The
+[aggregate reliability metrics](docs/RELIABILITY_METRICS.json) and
+[figure](docs/reliability.png) document the results; local thresholds are bound
+to exact saved model hashes and frozen for final testing. Audit results do not
+change model selection or interval settings. Repeat with a new `-RunDirectory`;
+the script preserves existing runs and never repeats the input search.
+
 ## Project map
 
 | Location | Purpose |
 | --- | --- |
-| `calorie_estimation/` | Preparation, frozen evaluation, pipelines, baseline/XGBoost fitting, input comparisons and environment checks |
-| `configs/project.toml` | Four input sets, evaluation settings, Ridge grid, fixed XGBoost search and timing protocol |
+| `calorie_estimation/` | Preparation, frozen evaluation, pipelines, baseline/XGBoost fitting, input comparisons, reliability audits and environment checks |
+| `configs/project.toml` | Four input sets, evaluation settings, Ridge grid, fixed XGBoost search, timing and reliability protocols |
 | `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
 | `tests/` | Synthetic fixtures for failure modes and repeatability |
 | `docs/` | Audit, research brief, experiment plan and implementation verification |
