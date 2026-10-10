@@ -108,6 +108,11 @@ def main(argv=None):
     reliability.add_argument("--baseline-run-dir", type=Path, default=ROOT / "runs/baselines-v1")
     reliability.add_argument("--comparison-run-dir", type=Path, default=ROOT / "runs/input-comparison-v1")
     reliability.add_argument("--run-dir", type=Path, default=ROOT / "runs/reliability-v1")
+    final = commands.add_parser("final-evaluate", help="Release reserved test once for the frozen systems; no fitting")
+    final.add_argument("--baseline-run-dir", type=Path, default=ROOT / "runs/baselines-v1")
+    final.add_argument("--comparison-run-dir", type=Path, default=ROOT / "runs/input-comparison-v1")
+    final.add_argument("--reliability-run-dir", type=Path, default=ROOT / "runs/reliability-v1")
+    final.add_argument("--run-dir", type=Path, default=ROOT / "runs/final-evaluation-v1")
     args = parser.parse_args(argv)
     try:
         config, manifest = load_project()
@@ -139,6 +144,11 @@ def main(argv=None):
                                      args.baseline_run_dir, args.comparison_run_dir, args.run_dir,
                                      config, manifest, doctor(require_ml=True),
                                      progress=lambda message: print(message, file=sys.stderr, flush=True))
+        elif args.command == "final-evaluate":
+            from .final_evaluation import run_final_evaluation
+            result = run_final_evaluation(ROOT / config["processed_dir"], ROOT / config["split_dir"],
+                args.baseline_run_dir, args.comparison_run_dir, args.reliability_run_dir, args.run_dir,
+                config, manifest, doctor(require_ml=True))
         else:
             from .evaluation import create_splits, verify_splits
             prepared_dir = args.prepared_dir or ROOT / config["processed_dir"]
