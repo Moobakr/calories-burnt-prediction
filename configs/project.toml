@@ -2,6 +2,7 @@ schema_version = 1
 data_manifest = "data/dataset_manifest.json"
 raw_csv = "data/raw/exercise.csv"
 processed_dir = "data/processed"
+split_dir = "data/splits"
 
 [feature_sets]
 duration = ["Duration"]
@@ -9,9 +10,10 @@ basic = ["Gender", "Age", "Height", "Weight", "Duration"]
 heart_rate = ["Gender", "Age", "Height", "Weight", "Duration", "Heart_Rate"]
 full = ["Gender", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"]
 
-# Recorded for item 4; this preparer does not allocate partitions or fit models.
+# Allocated by the split command; no model is fitted by data preparation.
 [evaluation]
 split_seed = 42
+cv_seed = 43
 development_fraction = 0.6
 calibration_fraction = 0.2
 test_fraction = 0.2

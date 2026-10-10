@@ -10,8 +10,9 @@ Research question: how much does prediction error change when heart rate and
 body temperature are removed, and how does that change vary across represented
 groups and workout durations?
 
-**Status:** item 3 provides a reproducible environment and data preparation.
-Partitioning, model training, and performance results belong to later items.
+**Status:** items 3 and 4 provide reproducible preparation, frozen partitions,
+shared development CV folds, and unfitted preprocessing. **29 tests pass.**
+Model training and performance results belong to later items.
 The target is the supplied benchmark's recorded calorie label. Collection
 methods, label generation, and dataset licensing remain unresolved.
 
@@ -24,7 +25,7 @@ commands explicitly use the isolated environment.
 ```powershell
 & .\scripts\setup.ps1 -Python python
 & .\.venv\Scripts\python.exe -m calorie_estimation stage --source "B:\calories\exercise.csv" --notebook "B:\calories\Calories_burnt_prediction_project.ipynb"
-& .\scripts\prepare.ps1
+& .\scripts\evaluate-setup.ps1
 ```
 
 Substitute your own CSV path. `--notebook` is optional. If PowerShell blocks
@@ -57,7 +58,8 @@ The duplicate key includes all columns except `User_ID`, including the target.
 It keeps the first occurrence in source order; numeric equality recognizes
 equivalent spellings such as `39.5` and `39.50`. Only duplicate observations are
 removed. Preparation does not encode categories, scale, impute, split data, or
-fit a model. Learned preprocessing must be fitted within training folds in item 4.
+fit a model. Learned preprocessing must be fitted within each training fold
+when model fitting begins.
 The preparation manifest is written last; later consumers must verify its
 output hashes before use. Repeating preparation on the same input and code
 produces identical table, log, and manifest bytes.
@@ -73,6 +75,8 @@ python -m venv .venv
 & .\.venv\Scripts\python.exe -m calorie_estimation validate --output runs/validation.json
 & .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 & .\.venv\Scripts\python.exe -m calorie_estimation prepare
+& .\.venv\Scripts\python.exe -m calorie_estimation split
+& .\.venv\Scripts\python.exe -m calorie_estimation verify-splits
 ```
 
 `validate --data PATH` and `prepare --data PATH --output-dir PATH` support
@@ -80,11 +84,19 @@ explicit alternative locations. Defaults resolve relative to this checkout,
 regardless of the calling directory after editable installation. The installed
 console command `calorie-estimation` provides the same CLI.
 
+`evaluate-setup.ps1` runs preparation and the test suite, then creates and
+verifies frozen partitions: **8,999 development / 3,000 calibration / 3,000
+test**, with five development-only CV folds shared across all four feature
+sets. `split` and `verify-splits` accept `--prepared-dir` and `--split-dir`.
+Existing allocations are protected against silent changes. See the
+[evaluation protocol](docs/EVALUATION_PROTOCOL.md) for the exact algorithm,
+allowed use of each partition, and preprocessing requirements.
+
 ## Project map
 
 | Location | Purpose |
 | --- | --- |
-| `calorie_estimation/` | Validation, deterministic preparation, environment checks |
+| `calorie_estimation/` | Validation, preparation, frozen evaluation, unfitted preprocessing and environment checks |
 | `configs/project.toml` | Four input sets and planned evaluation settings |
 | `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
 | `tests/` | Synthetic fixtures for failure modes and repeatability |
@@ -94,7 +106,8 @@ console command `calorie-estimation` provides the same CLI.
 The four input sets are duration only; basic demographic measurements plus
 duration; basic plus heart rate; and full inputs including body temperature.
 Configuration loading rejects identifiers and targets as predictor columns.
-Evaluation seeds and proportions are recorded now; no partitions exist yet.
+Frozen assignment files are local and Git-ignored, alongside raw and derived
+observations. The development loader excludes calibration and test rows.
 
 Read [the brief](docs/PROJECT_BRIEF.md), [experiment plan](docs/EXPERIMENT_PLAN.md),
 and [audit](docs/DATA_AUDIT.md) for study scope and limitations. The previous

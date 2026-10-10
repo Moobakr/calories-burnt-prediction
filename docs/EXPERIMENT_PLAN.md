@@ -1,6 +1,6 @@
 # Experiment plan
 
-Version 1.0 — 10 October 2026. No new models have been trained for this plan.
+Version 1.1 — 10 October 2026. Preparation and partitioning are implemented; no new benchmark models have been trained.
 
 ## 1. Scope and hypotheses
 
@@ -22,13 +22,13 @@ The file was already explored and a test split was previously evaluated in the o
 - Validate the recorded gender categories and numeric schema. Reject unrecognized categories rather than silently mapping them to an existing category.
 - Fit all learned transformations within training folds. Give each estimator its own preprocessing objects so fitting one cannot mutate another's pipeline.
 
-This is a plan; the source files have not been cleaned or edited.
+Items 3 and 4 implement this preparation in a derived table; the original source files remain unchanged.
 
 ## 3. Partitioning and model selection
 
-Planned proportions after duplicate handling: 60% development, 20% calibration, and 20% reserved test, using a recorded random seed (42). Exact counts and allocation checks belong to item 4. No repeated recorded IDs remain in the current file. Repeated participants in any later dataset must stay together across partitions.
+Implemented proportions after duplicate handling: 60% development, 20% calibration, and 20% reserved test, using seed 42. Ceiling the calibration and test counts and assigning the remainder to development yields 8,999 / 3,000 / 3,000 rows. Item 4 ranks SHA-256 hashes of canonical ID, purpose, and seed; allocation is independent of source row order and calorie labels. No label stratification or seed search is used. Exact construction and verification are documented in [EVALUATION_PROTOCOL.md](EVALUATION_PROTOCOL.md). No repeated recorded IDs remain in the current file. Repeated participants in any later dataset must stay together across partitions.
 
-Use five-fold cross-validation within the development partition to select hyperparameters. Fit preprocessing on each fold's training subset. Use matched folds across feature sets and algorithms. Do not use calibration or test labels to select features, algorithms, transformations, or search settings.
+Use five-fold cross-validation within development, selecting hyperparameters by mean validation-fold MAE. The fixed folds use separately ranked IDs with CV seed 43, recorded before new benchmark fitting; validation sizes are 1,800 / 1,800 / 1,800 / 1,800 / 1,799. Fit preprocessing on each fold's training subset inside its estimator pipeline. Use the same saved folds across feature sets and algorithms. Do not use calibration or test labels to select features, algorithms, transformations, or search settings. Deliberate data/protocol revisions require a new split output directory and a dated explanation.
 
 The calibration partition is reserved for item 7's uncertainty method. The test partition evaluates frozen model and interval choices. Avoid repeated test-driven redesign. Any deliberate return to development after seeing final results must be disclosed and would require new independent evidence for confirmatory claims.
 

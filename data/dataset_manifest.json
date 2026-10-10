@@ -4,6 +4,7 @@
   "filename": "exercise.csv",
   "sha256": "411400c2854c99ba508c54d05926d3f826fdb2f7d42dc9d4882b24b2a52d3600",
   "expected_rows": 15000,
+  "expected_modeling_table_sha256": "ddc094b3afa3776d06e1b12879e5ed044c30966cd69a36e7bc30984b6d0c906b",
   "id_column": "User_ID",
   "target_column": "Calories",
   "columns": [

@@ -10,6 +10,8 @@ data/raw/*
 !data/raw/.gitkeep
 data/processed/*
 !data/processed/.gitkeep
+data/splits/*
+!data/splits/.gitkeep
 data/local_sources.json
 notebooks/legacy/*.ipynb
 runs/*

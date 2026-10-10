@@ -47,4 +47,4 @@ The intended contribution is a documented study of incremental input value, unce
 
 Deliver: a reproducible repository, experimental results, a concise research report, a demo using the evaluated pipeline, and a small usability study. Application materials will describe measured findings and the author's actual contribution.
 
-**Implementation:** item 3 establishes the repository, environment, data manifest, and clean execution path. See [the README](../README.md) and verification report for completed checks. Training begins only after item 4 fixes the evaluation protocol. See [the experiment plan](EXPERIMENT_PLAN.md) for the planned controls and boundaries.
+**Implementation:** items 3 and 4 establish reproducible preparation, frozen partitions, matched development CV folds, and unfitted preprocessing. See [the README](../README.md) and [evaluation protocol](EVALUATION_PROTOCOL.md) for completed checks. Next is item 5: development-only baseline fitting. See [the experiment plan](EXPERIMENT_PLAN.md) for the controls and boundaries.

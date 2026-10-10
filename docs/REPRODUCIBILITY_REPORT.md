@@ -3,6 +3,10 @@
 Completed on 10 October 2026. **All checks passed.** No models were trained and
 no development/calibration/test partitions were created.
 
+This document is the item 3 verification snapshot. Item 4 subsequently creates
+partitions and expands the test suite; see [the current evaluation protocol](EVALUATION_PROTOCOL.md).
+Preparation manifest hashes change when code/configuration fingerprints change.
+
 ## Verified environment
 
 An isolated Python **3.12.14**, Windows AMD64 environment was created in `.venv`.

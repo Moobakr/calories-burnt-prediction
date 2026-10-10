@@ -94,6 +94,11 @@ def main(argv=None):
     preparation = commands.add_parser("prepare", help="Derive a table with duplicate observations removed")
     preparation.add_argument("--data", type=Path)
     preparation.add_argument("--output-dir", type=Path)
+    for name, help_text in (("split", "Create frozen partitions and development CV folds"),
+                            ("verify-splits", "Verify frozen partitions against inputs and configuration")):
+        splitting = commands.add_parser(name, help=help_text)
+        splitting.add_argument("--prepared-dir", type=Path)
+        splitting.add_argument("--split-dir", type=Path)
     args = parser.parse_args(argv)
     try:
         config, manifest = load_project()
@@ -107,9 +112,17 @@ def main(argv=None):
                 raise ValueError("Validation report would overwrite the raw input")
             _, _, result = validate_file(source, manifest)
             result["project_fingerprints"] = fingerprints()
-        else:
+        elif args.command == "prepare":
             result = prepare(args.data or ROOT / config["raw_csv"],
                              args.output_dir or ROOT / config["processed_dir"], manifest, fingerprints())
+        else:
+            from .evaluation import create_splits, verify_splits
+            prepared_dir = args.prepared_dir or ROOT / config["processed_dir"]
+            split_dir = args.split_dir or ROOT / config["split_dir"]
+            if args.command == "split":
+                result = create_splits(prepared_dir, split_dir, config, manifest, fingerprints())
+            else:
+                _, _, result = verify_splits(prepared_dir, split_dir, config, manifest)
         if getattr(args, "output", None):
             write_json(args.output, result)
         print(json.dumps(result, indent=2, sort_keys=True))
