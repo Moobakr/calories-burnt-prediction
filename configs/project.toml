@@ -1,0 +1,21 @@
+schema_version = 1
+data_manifest = "data/dataset_manifest.json"
+raw_csv = "data/raw/exercise.csv"
+processed_dir = "data/processed"
+
+[feature_sets]
+duration = ["Duration"]
+basic = ["Gender", "Age", "Height", "Weight", "Duration"]
+heart_rate = ["Gender", "Age", "Height", "Weight", "Duration", "Heart_Rate"]
+full = ["Gender", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"]
+
+# Recorded for item 4; this preparer does not allocate partitions or fit models.
+[evaluation]
+split_seed = 42
+development_fraction = 0.6
+calibration_fraction = 0.2
+test_fraction = 0.2
+cv_folds = 5
+bootstrap_seed = 2026
+bootstrap_resamples = 2000
+competitive_relative_mae_margin = 0.10

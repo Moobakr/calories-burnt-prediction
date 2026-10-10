@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.env
+.env.*
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/local_sources.json
+notebooks/legacy/*.ipynb
+runs/*
+!runs/.gitkeep
+.pytest_cache/
