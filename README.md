@@ -10,12 +10,13 @@ Research question: how much does prediction error change when heart rate and
 body temperature are removed, and how does that change vary across represented
 groups and workout durations?
 
-**Status:** items 3–5 provide reproducible preparation, frozen partitions,
-shared development CV folds, and fitted mean/Ridge baselines. **36 tests pass.**
-Full-input Ridge achieved development CV MAE **8.303**, versus **52.833** for
-the training-target mean. These are development results; Ridge scores reuse
-the alpha-selection folds. Calibration and test evaluation remain deferred.
-See [baseline results](docs/BASELINE_RESULTS.md) for all input sets and limits.
+**Status:** items 3–6 provide reproducible preparation, frozen partitions,
+shared development CV folds, mean/Ridge baselines and a matched XGBoost input
+comparison. **42 tests pass.** See [the input comparison](docs/INPUT_COMPARISON.md)
+for error versus input requirements, prediction timings and limitations, or
+[baseline results](docs/BASELINE_RESULTS.md) for the earlier linear milestone.
+Scores are development tuning estimates; calibration and test evaluation
+remain deferred. The final system and real-world usefulness are not established.
 The target is the supplied benchmark's recorded calorie label. Collection
 methods, label generation, and dataset licensing remain unresolved.
 
@@ -28,7 +29,7 @@ commands explicitly use the isolated environment.
 ```powershell
 & .\scripts\setup.ps1 -Python python
 & .\.venv\Scripts\python.exe -m calorie_estimation stage --source "B:\calories\exercise.csv" --notebook "B:\calories\Calories_burnt_prediction_project.ipynb"
-& .\scripts\baselines.ps1
+& .\scripts\compare-inputs.ps1
 ```
 
 Substitute your own CSV path. `--notebook` is optional. If PowerShell blocks
@@ -81,6 +82,7 @@ python -m venv .venv
 & .\.venv\Scripts\python.exe -m calorie_estimation split
 & .\.venv\Scripts\python.exe -m calorie_estimation verify-splits
 & .\.venv\Scripts\python.exe -m calorie_estimation baselines --run-dir runs/baselines-v1
+& .\.venv\Scripts\python.exe -m calorie_estimation compare-inputs --baseline-run-dir runs/baselines-v1 --run-dir runs/input-comparison-v1
 ```
 
 `validate --data PATH` and `prepare --data PATH --output-dir PATH` support
@@ -105,12 +107,22 @@ Artifacts remain local and Git-ignored. The tracked
 [aggregate metrics](docs/BASELINE_METRICS.json) contain candidate/fold scores,
 versions, fit times, and source fingerprints, without per-record observations.
 
+`compare-inputs.ps1` runs the same preparation checks, creates the baseline run
+if missing, then searches 30 identical XGBoost configurations per input set on
+the saved development folds. It verifies historical baseline hashes, IDs,
+targets, folds and scores before comparison. It records 600 CV fits, four
+development refits, input requirements and prediction timings; numeric tree
+inputs retain their original units. Repeat with a new `-RunDirectory`.
+The [aggregate comparison metrics](docs/INPUT_COMPARISON_METRICS.json) and
+[PNG chart](docs/input_comparison.png) contain no new per-record observations.
+Fitted pipelines and selected OOF records remain local under `runs/`.
+
 ## Project map
 
 | Location | Purpose |
 | --- | --- |
-| `calorie_estimation/` | Validation, preparation, frozen evaluation, pipeline preprocessing, baseline fitting and environment checks |
-| `configs/project.toml` | Four input sets, frozen evaluation settings and baseline alpha grid |
+| `calorie_estimation/` | Preparation, frozen evaluation, pipelines, baseline/XGBoost fitting, input comparisons and environment checks |
+| `configs/project.toml` | Four input sets, evaluation settings, Ridge grid, fixed XGBoost search and timing protocol |
 | `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
 | `tests/` | Synthetic fixtures for failure modes and repeatability |
 | `docs/` | Audit, research brief, experiment plan and implementation verification |

@@ -101,6 +101,9 @@ def main(argv=None):
         splitting.add_argument("--split-dir", type=Path)
     training = commands.add_parser("baselines", help="Fit mean and Ridge using development folds only")
     training.add_argument("--run-dir", type=Path, default=ROOT / "runs/baselines-v1")
+    comparison = commands.add_parser("compare-inputs", help="Run matched development-only XGBoost search and comparisons")
+    comparison.add_argument("--baseline-run-dir", type=Path, default=ROOT / "runs/baselines-v1")
+    comparison.add_argument("--run-dir", type=Path, default=ROOT / "runs/input-comparison-v1")
     args = parser.parse_args(argv)
     try:
         config, manifest = load_project()
@@ -121,6 +124,11 @@ def main(argv=None):
             from .baselines import run_baselines
             result = run_baselines(ROOT / config["processed_dir"], ROOT / config["split_dir"],
                                    args.run_dir, config, manifest, doctor(require_ml=True))
+        elif args.command == "compare-inputs":
+            from .comparison import run_comparison
+            result = run_comparison(ROOT / config["processed_dir"], ROOT / config["split_dir"],
+                                    args.baseline_run_dir, args.run_dir, config, manifest, doctor(require_ml=True),
+                                    progress=lambda message: print(message, file=sys.stderr, flush=True))
         else:
             from .evaluation import create_splits, verify_splits
             prepared_dir = args.prepared_dir or ROOT / config["processed_dir"]

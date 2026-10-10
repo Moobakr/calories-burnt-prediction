@@ -1,6 +1,6 @@
 # Experiment plan
 
-Version 1.2 — 10 October 2026. Item 5 adds the baseline fitting settings below before new benchmark fitting. See BASELINE_RESULTS.md for the subsequent implementation and development results.
+Version 1.3 — 10 October 2026. Item 6 adds the XGBoost search and latency settings below before nonlinear benchmark fitting. Item 5 results are in BASELINE_RESULTS.md; the subsequent input comparison is in INPUT_COMPARISON.md.
 
 ## 1. Scope and hypotheses
 
@@ -46,9 +46,15 @@ Item 5 baseline protocol, fixed before benchmark fitting: Ridge alpha grid `[0.0
 
 Record all candidate/fold scores and fit times. Retain development out-of-fold predictions for the selected settings locally; report both mean-fold scores and pooled out-of-fold scores with distinct names. The selected Ridge CV scores reuse the alpha-selection folds and may be optimistic after tuning; they are development estimates, not an independent generalization estimate. Refit each selected pipeline on all 8,999 development rows, save it locally with provenance, and verify save/load prediction parity. Neither calibration nor test data enter fitting or scoring. Final evaluation remains deferred until model choices are frozen.
 
+Item 6 settings, fixed before nonlinear benchmark fitting: sample 30 distinct configurations without replacement using scikit-learn ParameterSampler and search seed 44. Use the same ordered sample for every input set, XGBoost model seed 45, squared-error objective, histogram trees and one CPU thread. The finite search space is `n_estimators=[200,400,600]`, `max_depth=[2,3,4,6]`, `learning_rate=[0.03,0.05,0.1]`, `min_child_weight=[1,5,10]`, `subsample=[0.8,1]`, `colsample_bytree=[0.8,1]`, `reg_lambda=[1,5,10]`, `reg_alpha=[0,0.1,1]`. No early stopping or evaluation set is used. Numeric inputs retain their units; gender uses the same schema encoding inside each fold's pipeline. Select by mean-fold MAE, breaking exact ties by the lower sampled candidate index. Refit each selected pipeline on development only and verify persistence.
+
+This is 600 XGBoost CV fits plus four development refits. Candidate/fold scores, parameters and OOF predictions are recorded. Input comparisons report mean-fold MAE differences and relative changes against full inputs within each algorithm, plus pooled OOF errors as separately labeled diagnostics. No bootstrap competitiveness decision is made from these tuning estimates; the predefined paired test bootstrap remains deferred. The Ridge and XGBoost tuning budgets differ, so the cross-algorithm comparison is descriptive. Item 8 will freeze the final systems and selection decisions; item 6 does not open a second XGBoost search budget.
+
 At first, compare the input sets within each algorithm so input effects are not confused with changes of model family. A final best system may also be selected using development scores, with the selection rule documented before test evaluation.
 
 Latency will be measured on the same machine with a defined batch size, repeated measurements, and warmed-up prediction calls. Report the environment. Do not equate fewer model fits with a measured energy or carbon saving.
+
+For item 6, measure saved development-fitted Ridge and XGBoost pipelines on the first 1 and first 100 development records in canonical ID order, using 10 warm-up calls and 100 timed calls per batch, one CPU thread and a monotonic high-resolution timer. Report median and 95th-percentile milliseconds per batch, excluding model loading and input parsing. Timing order is Ridge then XGBoost, each in configured input-set order; results are machine-specific diagnostics, not service latency guarantees. Input-field counts and heart-rate/temperature requirements describe available columns, not measured monetary cost or usability burden.
 
 ## 5. Outcomes and interpretation
 

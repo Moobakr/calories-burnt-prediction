@@ -27,3 +27,24 @@ competitive_relative_mae_margin = 0.10
 ridge_alphas = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
 ridge_solver = "svd"
 threads = 1
+
+# Identical sampled configurations for every input set, fixed before item 6 fits.
+[comparison]
+search_seed = 44
+model_seed = 45
+n_candidates = 30
+threads = 1
+tree_method = "hist"
+latency_warmups = 10
+latency_repeats = 100
+latency_batch_sizes = [1, 100]
+
+[comparison.search_space]
+n_estimators = [200, 400, 600]
+max_depth = [2, 3, 4, 6]
+learning_rate = [0.03, 0.05, 0.1]
+min_child_weight = [1, 5, 10]
+subsample = [0.8, 1.0]
+colsample_bytree = [0.8, 1.0]
+reg_lambda = [1.0, 5.0, 10.0]
+reg_alpha = [0.0, 0.1, 1.0]
