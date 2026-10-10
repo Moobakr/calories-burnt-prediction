@@ -10,16 +10,22 @@ Research question: how much does prediction error change when heart rate and
 body temperature are removed, and how does that change vary across represented
 groups and workout durations?
 
-**Status:** items 3–7 provide reproducible preparation, frozen partitions,
+**Status:** items 3–8 provide reproducible preparation, frozen partitions,
 shared development CV folds, mean/Ridge baselines and a matched XGBoost input
-comparison, plus subgroup, sensor-noise and prediction-interval audits.
-**52 tests pass.** See [the reliability report](docs/RELIABILITY_REPORT.md)
+comparison, subgroup/noise/interval audits and frozen final test evaluation.
+**63 tests pass.** The development-selected heart-rate XGBoost system has
+test MAE **0.978**, versus **1.032** for full inputs. Omitting temperature
+passes the predefined benchmark rule; omitting both sensors fails it.
+See [the final report](docs/FINAL_EVALUATION_REPORT.md) for all nine systems,
+paired comparisons and subgroup coverage, or [the reliability report](docs/RELIABILITY_REPORT.md)
 for observed coverage gaps and noise sensitivity, [the input comparison](docs/INPUT_COMPARISON.md)
 for error versus input requirements, prediction timings and limitations, or
 [baseline results](docs/BASELINE_RESULTS.md) for the earlier linear milestone.
 Development scores are tuning estimates. Calibration uses separate 1,500-row
-interval-fit and interval-audit subsets; final test evaluation remains deferred.
-The final system and real-world usefulness are not established.
+interval-fit and interval-audit subsets. The 3,000-row final test has now been
+evaluated without refitting or recalibration. Primary interval coverage is
+90.7% overall but 79.5% for 21–30 minute sessions. Real-world usefulness
+remains unmeasured; errors use interpreted kcal/session.
 The target is the supplied benchmark's recorded calorie label. Collection
 methods, label generation, and dataset licensing remain unresolved.
 
@@ -133,11 +139,25 @@ to exact saved model hashes and frozen for final testing. Audit results do not
 change model selection or interval settings. Repeat with a new `-RunDirectory`;
 the script preserves existing runs and never repeats the input search.
 
+`final-evaluate.ps1` releases the reserved test once, using the matching frozen
+source runs and the selection rule fixed before the reliability audit. It
+checks exact model/threshold bindings, writes a selection manifest and an
+exclusive release record, then predicts all nine systems and performs the four
+planned paired bootstrap comparisons (2,000 shared resamples, seed 2026).
+It performs no fitting or recalibration. This checkout's release is complete;
+the command now refuses another evaluation, including a new run directory.
+Inspect [the frozen selection](docs/FINAL_SELECTION.json),
+[final aggregate metrics](docs/FINAL_EVALUATION_METRICS.json) and
+[figure](docs/final_evaluation.png). Per-record outputs stay local.
+The [final report](docs/FINAL_EVALUATION_REPORT.md) explains exact source-run
+requirements for reproducing this release; the source ZIP excludes fitted
+artifacts. Reconstructed experiments need their own verified source snapshot.
+
 ## Project map
 
 | Location | Purpose |
 | --- | --- |
-| `calorie_estimation/` | Preparation, frozen evaluation, pipelines, baseline/XGBoost fitting, input comparisons, reliability audits and environment checks |
+| `calorie_estimation/` | Preparation, frozen evaluation, pipelines, baseline/XGBoost fitting, input comparisons, reliability audits, final test release and environment checks |
 | `configs/project.toml` | Four input sets, evaluation settings, Ridge grid, fixed XGBoost search, timing and reliability protocols |
 | `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
 | `tests/` | Synthetic fixtures for failure modes and repeatability |

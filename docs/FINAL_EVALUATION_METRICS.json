@@ -1,0 +1,1285 @@
+{
+  "assignments_sha256": "71c3e9b3c684896622933cd522712aca81f96c30123a6ec207dd554e1f0ac978",
+  "created_at_utc": "2026-10-10T21:22:07.598190+00:00",
+  "effective_threadpools": [
+    {
+      "architecture": "Haswell",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libopenblas",
+      "user_api": "blas",
+      "version": "0.3.23.dev"
+    },
+    {
+      "architecture": null,
+      "internal_api": "openmp",
+      "num_threads": 1,
+      "prefix": "vcomp",
+      "user_api": "openmp",
+      "version": null
+    },
+    {
+      "architecture": "Haswell",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libopenblas",
+      "user_api": "blas",
+      "version": "0.3.21.dev"
+    }
+  ],
+  "environment": {
+    "architecture": "AMD64",
+    "dependency_versions": {
+      "contourpy": "1.2.0",
+      "cycler": "0.12.1",
+      "fonttools": "4.50.0",
+      "joblib": "1.3.2",
+      "kiwisolver": "1.4.5",
+      "matplotlib": "3.10.8",
+      "numpy": "1.26.4",
+      "packaging": "24.0",
+      "pandas": "2.2.3",
+      "pillow": "10.2.0",
+      "pyparsing": "3.1.2",
+      "python-dateutil": "2.8.2",
+      "pytz": "2024.1",
+      "scikit-learn": "1.8.0",
+      "scipy": "1.12.0",
+      "setuptools": "75.5.0",
+      "six": "1.16.0",
+      "threadpoolctl": "3.3.0",
+      "tzdata": "2024.1",
+      "wheel": "0.45.1",
+      "xgboost": "2.0.3"
+    },
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.12.14"
+  },
+  "experiment_plan_sha256": "64de5ce77cce7a4bba50b522b618a01ada530d61e33b040ec9f1d1395d7694e7",
+  "fit_count": 0,
+  "intervals_sha256": "73d5a243a287aca427de7a9a7b8fd06597d9351c6b47dd4d0abe3cc02ffe0ebf",
+  "modeling_table_sha256": "ddc094b3afa3776d06e1b12879e5ed044c30966cd69a36e7bc30984b6d0c906b",
+  "planned_comparisons": [
+    {
+      "absolute_change_interval_95": [
+        3.3655695543752246,
+        3.9963098679104045
+      ],
+      "absolute_mae_change": 3.681314893685135,
+      "competitiveness_decision": "fails_margin",
+      "full": "ridge_full",
+      "full_mae": 8.612757161851153,
+      "name": "ridge_basic_vs_ridge_full",
+      "reduced": "ridge_basic",
+      "reduced_mae": 12.294072055536288,
+      "relative_change_interval_95": [
+        0.38585202972657373,
+        0.4702054504572288
+      ],
+      "relative_mae_change": 0.4274258317639487,
+      "relative_mae_margin": 0.1,
+      "test_rows": 3000,
+      "undefined_relative_resamples": 0
+    },
+    {
+      "absolute_change_interval_95": [
+        0.962686516332055,
+        1.2972045146498088
+      ],
+      "absolute_mae_change": 1.1248700509048035,
+      "competitiveness_decision": "fails_margin",
+      "full": "ridge_full",
+      "full_mae": 8.612757161851153,
+      "name": "ridge_heart_rate_vs_ridge_full",
+      "reduced": "ridge_heart_rate",
+      "reduced_mae": 9.737627212755957,
+      "relative_change_interval_95": [
+        0.11066778337239551,
+        0.15183030434224806
+      ],
+      "relative_mae_change": 0.13060510470296754,
+      "relative_mae_margin": 0.1,
+      "test_rows": 3000,
+      "undefined_relative_resamples": 0
+    },
+    {
+      "absolute_change_interval_95": [
+        6.93429419283842,
+        7.492802126805981
+      ],
+      "absolute_mae_change": 7.208145299553871,
+      "competitiveness_decision": "fails_margin",
+      "full": "xgboost_full",
+      "full_mae": 1.0315616256395976,
+      "name": "xgboost_basic_vs_xgboost_full",
+      "reduced": "xgboost_basic",
+      "reduced_mae": 8.239706925193468,
+      "relative_change_interval_95": [
+        6.643368876665713,
+        7.361017879694898
+      ],
+      "relative_mae_change": 6.9876051225583495,
+      "relative_mae_margin": 0.1,
+      "test_rows": 3000,
+      "undefined_relative_resamples": 0
+    },
+    {
+      "absolute_change_interval_95": [
+        -0.0679103715141616,
+        -0.03914108471870427
+      ],
+      "absolute_mae_change": -0.053803755561510735,
+      "competitiveness_decision": "competitive",
+      "full": "xgboost_full",
+      "full_mae": 1.0315616256395976,
+      "name": "xgboost_heart_rate_vs_xgboost_full",
+      "reduced": "xgboost_heart_rate",
+      "reduced_mae": 0.9777578700780869,
+      "relative_change_interval_95": [
+        -0.0651644957814467,
+        -0.03821982113183529
+      ],
+      "relative_mae_change": -0.05215757762232661,
+      "relative_mae_margin": 0.1,
+      "test_rows": 3000,
+      "undefined_relative_resamples": 0
+    }
+  ],
+  "primary_model": "xgboost_heart_rate",
+  "project_fingerprints": {
+    "calorie_estimation/__init__.py": "1959451d714e75f0523b131b8841598eeb522790aaea5b6c497494e57e5fcb4f",
+    "calorie_estimation/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "calorie_estimation/baselines.py": "c7d1bcab92e01b691ef77e61ad00553a4322a8455c525089433ff41d20b49fbc",
+    "calorie_estimation/cli.py": "a6aabde6dcc31f24c075d7c4545a33bc26a542650dfb0b2fbc11c7b42c78d980",
+    "calorie_estimation/comparison.py": "a317cf1ede518cf2ecb69c314049e28fa8b7faac5f44503374858cd473f5fe0c",
+    "calorie_estimation/config.py": "b33f70e0235e8a6a9f066c5cea158cd0692ba5d12526303253b407eeeca1d730",
+    "calorie_estimation/data.py": "fcb7317d7bd32e79cdcc7a23fd58be3c91b5a9fb3b7bbf45cb0aa5d223acefab",
+    "calorie_estimation/evaluation.py": "5dd1feba52dbbc8f0aba364192f9854248f26f28f48552669ed966913faa4c37",
+    "calorie_estimation/final_evaluation.py": "4595549edcfaabab0c0b60db3d2131c13071f90f08edfad7b19deb108f2b5c37",
+    "calorie_estimation/preprocessing.py": "5d8dfed437b89d27107afa864c7f0724d0521baaeefbb235d1981edd4a5725d5",
+    "calorie_estimation/reliability.py": "4a7c9a596573eb058a794af1b29c460fb76866504bdc022f45b8be5cd3d2fce2",
+    "configs/project.toml": "b035844946380559e6b4381c3e190ea3630a36f1f824b7c828f3291d76b425b9",
+    "data/dataset_manifest.json": "1ed33e3408d211aa8a79838c3828d652677c3669ece9cc2f6cd7e0b3bac4cc5a",
+    "pyproject.toml": "6b304e0d6a2cae9b94e78efa532f2ba89cea2f79f387d98bbde9e8c738811bef",
+    "requirements.lock.txt": "d6d038df93f0d3366cc31cefe4bd79d21f7f1e1a6ca70d3e82b0a06320e4a998",
+    "scripts/baselines.ps1": "1b8c825201eced6f7a1da9a545f1e0ca7240b630f7194d05d4e9f605a69d9752",
+    "scripts/compare-inputs.ps1": "fe21c2f53504b5eab6d392158fc6781ef0de5810b8808dd4e6d935e55e0d8a86",
+    "scripts/evaluate-setup.ps1": "d16305179ebb52f3ed63eb48aab1051094a21145eb9d1299b055998f5b4d9c8a",
+    "scripts/final-evaluate.ps1": "1a56fe76cf64af3b95878fcf5061b3efaa1aff8442bc7ba6964b8594fcfa8a47",
+    "scripts/prepare.ps1": "4947434d63e2e28ee36014a0db54122ec1c57dd17b0ffe077862133fbbfbd4bc",
+    "scripts/reliability.ps1": "425adc66c0ffa3f3046a85217c9fc3c8a4564bbc3d9773334a9a22552129f4d4",
+    "scripts/setup.ps1": "9191d71e9ce0175a3d7b623c2fe04021d1b7f126f3b87ad92c19fb9a3ee9556d",
+    "tests/test_baselines.py": "1b898c530fe8662de9ca40290c25f6c8b02f91f119157355bbf41417d117d64a",
+    "tests/test_comparison.py": "efef87a6cd8424d6abafb969c74ae48d104244514d4ddc22108b46305018da9e",
+    "tests/test_data.py": "6b36af56503879cbb91c66be873ab58efc6f683396b154a20d14a1fa63ec464c",
+    "tests/test_evaluation.py": "ae236e0ef42e706f50ebb584b25f37e2370e0876a41720ea37a17c3d4a7e560e",
+    "tests/test_final_evaluation.py": "1f3422aa6398348657d225ffbb585c8a52419414c6d1e7a413534fba97f78d29",
+    "tests/test_reliability.py": "057a4091cc728ea15db1f01114cbfd9b6987c11db87f6aae2b039ce290ca58e6"
+  },
+  "protocol": {
+    "bootstrap_method": "paired-row-percentile",
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 2026,
+    "confidence_level": 0.95,
+    "planned_pairs": [
+      [
+        "ridge_basic",
+        "ridge_full"
+      ],
+      [
+        "ridge_heart_rate",
+        "ridge_full"
+      ],
+      [
+        "xgboost_basic",
+        "xgboost_full"
+      ],
+      [
+        "xgboost_heart_rate",
+        "xgboost_full"
+      ]
+    ],
+    "primary_rule": "lowest development mean-fold MAE, then fewer input fields, then model name",
+    "quantile_method": "linear",
+    "relative_mae_margin": 0.1,
+    "threads": 1
+  },
+  "quantile_refit_count": 0,
+  "results": [
+    {
+      "algorithm": "mean",
+      "development_mean_fold_mae": 52.83321185332401,
+      "feature_set": null,
+      "input_columns": [],
+      "interval_threshold": null,
+      "model_sha256": "f380190d582032a2921087f4cc9e0988ca5084f36499db4f1603bd33089e66cb",
+      "name": "mean",
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "group": "female",
+            "mae": 51.32526201261376,
+            "n": 1522,
+            "p95_absolute_error": 101.40093343704856,
+            "rmse": 59.45745764208107
+          },
+          {
+            "axis": "gender",
+            "group": "male",
+            "mae": 57.23389029392981,
+            "n": 1478,
+            "p95_absolute_error": 124.40093343704856,
+            "rmse": 67.4314989583764
+          },
+          {
+            "axis": "age",
+            "group": "20-39",
+            "mae": 50.20125158206612,
+            "n": 1540,
+            "p95_absolute_error": 97.40093343704856,
+            "rmse": 58.22552136817409
+          },
+          {
+            "axis": "age",
+            "group": "40-59",
+            "mae": 55.105842993627775,
+            "n": 873,
+            "p95_absolute_error": 108.40093343704856,
+            "rmse": 63.77624243402277
+          },
+          {
+            "axis": "age",
+            "group": "60-79",
+            "mae": 63.52880795197194,
+            "n": 587,
+            "p95_absolute_error": 136.2009334370483,
+            "rmse": 75.31038426837311
+          },
+          {
+            "axis": "duration",
+            "group": "1-10",
+            "mae": 65.7906216607887,
+            "n": 971,
+            "p95_absolute_error": 85.09906656295144,
+            "rmse": 67.27528103179709
+          },
+          {
+            "axis": "duration",
+            "group": "11-20",
+            "mae": 22.195273096666206,
+            "n": 1032,
+            "p95_absolute_error": 47.599066562951435,
+            "rmse": 26.70112425220608
+          },
+          {
+            "axis": "duration",
+            "group": "21-30",
+            "mae": 76.14897007947947,
+            "n": 997,
+            "p95_absolute_error": 132.6009334370485,
+            "rmse": 83.61539425909415
+          }
+        ],
+        "overall": {
+          "mae": 54.236246212542135,
+          "n": 3000,
+          "negative_predictions": 0,
+          "p95_absolute_error": 110.40093343704856,
+          "rmse": 63.51124438589535
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": 5.185444215410024,
+      "algorithm": "ridge",
+      "development_mean_fold_mae": 13.297502907086141,
+      "feature_set": "duration",
+      "input_columns": [
+        "Duration"
+      ],
+      "interval_threshold": 28.62236676767077,
+      "model_sha256": "ecc3138db29006d8284349e86adac6642ff9be7dfefd2595c9db012e30b8d4d6",
+      "name": "ridge_duration",
+      "relative_mae_change_vs_full": 0.6020655311609306,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9625492772667543,
+            "covered": 1465,
+            "group": "female",
+            "mae": 10.270007677062955,
+            "mean_width": 57.24473353534154,
+            "n": 1522,
+            "p95_absolute_error": 26.205773449122614,
+            "rmse": 13.052872751216317
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8179972936400541,
+            "covered": 1209,
+            "group": "male",
+            "mae": 17.43142926068587,
+            "mean_width": 57.24473353534154,
+            "n": 1478,
+            "p95_absolute_error": 46.81700168479976,
+            "rmse": 23.271538453058206
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8974025974025974,
+            "covered": 1382,
+            "group": "20-39",
+            "mae": 13.676875286536315,
+            "mean_width": 57.24473353534154,
+            "n": 1540,
+            "p95_absolute_error": 35.12503576399323,
+            "rmse": 17.381967618708295
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9358533791523482,
+            "covered": 817,
+            "group": "40-59",
+            "mae": 11.198065121064841,
+            "mean_width": 57.24473353534154,
+            "n": 873,
+            "p95_absolute_error": 33.48650394678941,
+            "rmse": 15.12101119856367
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8091993185689949,
+            "covered": 475,
+            "group": "60-79",
+            "mae": 17.983484394936973,
+            "mean_width": 57.24473353534154,
+            "n": 587,
+            "p95_absolute_error": 58.00944031238184,
+            "rmse": 25.93581688051279
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9989701338825953,
+            "covered": 970,
+            "group": "1-10",
+            "mae": 7.809861911289687,
+            "mean_width": 57.24473353534154,
+            "n": 971,
+            "p95_absolute_error": 17.432663483198155,
+            "rmse": 9.384777400087714
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9050387596899225,
+            "covered": 934,
+            "group": "11-20",
+            "mae": 13.7598606109255,
+            "mean_width": 57.24473353534154,
+            "n": 1032,
+            "p95_absolute_error": 34.014420318455386,
+            "rmse": 17.17455324960965
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.7723169508525577,
+            "covered": 770,
+            "group": "21-30",
+            "mae": 19.670062252202744,
+            "mean_width": 57.24473353534154,
+            "n": 997,
+            "p95_absolute_error": 52.61929279178729,
+            "rmse": 25.919844066197246
+          }
+        ],
+        "overall": {
+          "coverage": 0.8913333333333333,
+          "covered": 2674,
+          "mae": 13.798201377261178,
+          "mean_width": 57.24473353534154,
+          "n": 3000,
+          "negative_lower_bounds": 571,
+          "negative_predictions": 130,
+          "p95_absolute_error": 39.1092164672544,
+          "rmse": 18.79491836658106
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": 3.681314893685135,
+      "algorithm": "ridge",
+      "development_mean_fold_mae": 11.987781874415901,
+      "feature_set": "basic",
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration"
+      ],
+      "interval_threshold": 24.71840778610985,
+      "model_sha256": "a8c453863b42bb08cf756e7b09e142966bfc41e2d568939be45ed7850cdcae5c",
+      "name": "ridge_basic",
+      "relative_mae_change_vs_full": 0.4274258317639487,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9487516425755584,
+            "covered": 1444,
+            "group": "female",
+            "mae": 10.472703206137068,
+            "mean_width": 49.4368155722197,
+            "n": 1522,
+            "p95_absolute_error": 24.750492621158877,
+            "rmse": 13.04446009771466
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8362652232746955,
+            "covered": 1236,
+            "group": "male",
+            "mae": 14.169662981642931,
+            "mean_width": 49.4368155722197,
+            "n": 1478,
+            "p95_absolute_error": 39.32260682467068,
+            "rmse": 19.092615649994908
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8993506493506493,
+            "covered": 1385,
+            "group": "20-39",
+            "mae": 12.47850192526783,
+            "mean_width": 49.4368155722197,
+            "n": 1540,
+            "p95_absolute_error": 30.31603935322027,
+            "rmse": 15.610516167989084
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9152348224513173,
+            "covered": 799,
+            "group": "40-59",
+            "mae": 10.690705942043254,
+            "mean_width": 49.4368155722197,
+            "n": 873,
+            "p95_absolute_error": 30.86278179473443,
+            "rmse": 14.337540946494244
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8449744463373083,
+            "covered": 496,
+            "group": "60-79",
+            "mae": 14.194781796069247,
+            "mean_width": 49.4368155722197,
+            "n": 587,
+            "p95_absolute_error": 44.89789413688544,
+            "rmse": 20.346845953919907
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9876416065911432,
+            "covered": 959,
+            "group": "1-10",
+            "mae": 8.657947283223905,
+            "mean_width": 49.4368155722197,
+            "n": 971,
+            "p95_absolute_error": 21.37621586026149,
+            "rmse": 10.730107300592415
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9147286821705426,
+            "covered": 944,
+            "group": "11-20",
+            "mae": 11.56022206206849,
+            "mean_width": 49.4368155722197,
+            "n": 1032,
+            "p95_absolute_error": 28.861538639748296,
+            "rmse": 14.519181288806843
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.7793380140421263,
+            "covered": 777,
+            "group": "21-30",
+            "mae": 16.594985141969683,
+            "mean_width": 49.4368155722197,
+            "n": 997,
+            "p95_absolute_error": 42.76421365218823,
+            "rmse": 21.67518045836944
+          }
+        ],
+        "overall": {
+          "coverage": 0.8933333333333333,
+          "covered": 2680,
+          "mae": 12.294072055536288,
+          "mean_width": 49.4368155722197,
+          "n": 3000,
+          "negative_lower_bounds": 557,
+          "negative_predictions": 200,
+          "p95_absolute_error": 32.34168375761261,
+          "rmse": 16.306979351087314
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": 1.1248700509048035,
+      "algorithm": "ridge",
+      "development_mean_fold_mae": 9.558344781666134,
+      "feature_set": "heart_rate",
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate"
+      ],
+      "interval_threshold": 17.911271334684784,
+      "model_sha256": "64529d26c74638ed206ec7094e154f715ea0484c3f336e47026a428dfd564582",
+      "name": "ridge_heart_rate",
+      "relative_mae_change_vs_full": 0.13060510470296754,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9277266754270697,
+            "covered": 1412,
+            "group": "female",
+            "mae": 7.992117553393257,
+            "mean_width": 35.82254266936957,
+            "n": 1522,
+            "p95_absolute_error": 20.76141579958277,
+            "rmse": 10.347295104586491
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8301759133964818,
+            "covered": 1227,
+            "group": "male",
+            "mae": 11.535100623818224,
+            "mean_width": 35.82254266936957,
+            "n": 1478,
+            "p95_absolute_error": 29.363111968026274,
+            "rmse": 14.998098557738976
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8733766233766234,
+            "covered": 1345,
+            "group": "20-39",
+            "mae": 9.596792670390062,
+            "mean_width": 35.82254266936957,
+            "n": 1540,
+            "p95_absolute_error": 23.47190694623273,
+            "rmse": 12.077098843798748
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9266895761741123,
+            "covered": 809,
+            "group": "40-59",
+            "mae": 8.344157761172784,
+            "mean_width": 35.82254266936957,
+            "n": 873,
+            "p95_absolute_error": 21.342668057860486,
+            "rmse": 10.705079195612418
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8262350936967632,
+            "covered": 485,
+            "group": "60-79",
+            "mae": 12.179508007433277,
+            "mean_width": 35.82254266936957,
+            "n": 587,
+            "p95_absolute_error": 37.055584634348946,
+            "rmse": 17.055751964250042
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.8661174047373842,
+            "covered": 841,
+            "group": "1-10",
+            "mae": 9.550567389756933,
+            "mean_width": 35.82254266936957,
+            "n": 971,
+            "p95_absolute_error": 25.558572634890062,
+            "rmse": 12.299570377169365
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9593023255813954,
+            "covered": 990,
+            "group": "11-20",
+            "mae": 8.642222003385161,
+            "mean_width": 35.82254266936957,
+            "n": 1032,
+            "p95_absolute_error": 17.365316267903832,
+            "rmse": 10.02817816131772
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.8104312938816449,
+            "covered": 808,
+            "group": "21-30",
+            "mae": 11.053668601123773,
+            "mean_width": 35.82254266936957,
+            "n": 997,
+            "p95_absolute_error": 33.02724633151953,
+            "rmse": 15.667885498955314
+          }
+        ],
+        "overall": {
+          "coverage": 0.8796666666666667,
+          "covered": 2639,
+          "mae": 9.737627212755957,
+          "mean_width": 35.82254266936957,
+          "n": 3000,
+          "negative_lower_bounds": 477,
+          "negative_predictions": 223,
+          "p95_absolute_error": 25.32348351667713,
+          "rmse": 12.850693012668225
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": 0.0,
+      "algorithm": "ridge",
+      "development_mean_fold_mae": 8.302841963179224,
+      "feature_set": "full",
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate",
+        "Body_Temp"
+      ],
+      "interval_threshold": 16.44269326814924,
+      "model_sha256": "8fc25df553054111878c865e01019fe55c32edd4060bbbe18bff93c4f1ea7e71",
+      "name": "ridge_full",
+      "relative_mae_change_vs_full": 0.0,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9165571616294349,
+            "covered": 1395,
+            "group": "female",
+            "mae": 7.336551087157393,
+            "mean_width": 32.88538653629848,
+            "n": 1522,
+            "p95_absolute_error": 18.8197724548831,
+            "rmse": 9.485233512536052
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8281461434370772,
+            "covered": 1224,
+            "group": "male",
+            "mae": 9.926955839580447,
+            "mean_width": 32.88538653629848,
+            "n": 1478,
+            "p95_absolute_error": 27.013221693956236,
+            "rmse": 13.515939250413554
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8675324675324675,
+            "covered": 1336,
+            "group": "20-39",
+            "mae": 8.512698480609144,
+            "mean_width": 32.88538653629848,
+            "n": 1540,
+            "p95_absolute_error": 21.658700740326317,
+            "rmse": 10.778395846032033
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9358533791523482,
+            "covered": 817,
+            "group": "40-59",
+            "mae": 6.990351511870388,
+            "mean_width": 32.88538653629848,
+            "n": 873,
+            "p95_absolute_error": 17.79707374322931,
+            "rmse": 9.30564927661052
+          },
+          {
+            "axis": "age",
+            "coverage": 0.7938671209540034,
+            "covered": 466,
+            "group": "60-79",
+            "mae": 11.28814132121384,
+            "mean_width": 32.88538653629848,
+            "n": 587,
+            "p95_absolute_error": 34.93109465913332,
+            "rmse": 16.11450476840298
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.8640576725025747,
+            "covered": 839,
+            "group": "1-10",
+            "mae": 8.590430470808883,
+            "mean_width": 32.88538653629848,
+            "n": 971,
+            "p95_absolute_error": 22.475884591046366,
+            "rmse": 10.944553931433196
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9622093023255814,
+            "covered": 993,
+            "group": "11-20",
+            "mae": 6.7338780112456895,
+            "mean_width": 32.88538653629848,
+            "n": 1032,
+            "p95_absolute_error": 15.389420708343838,
+            "rmse": 8.302742349042147
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.7893681043129388,
+            "covered": 787,
+            "group": "21-30",
+            "mae": 10.579339409019534,
+            "mean_width": 32.88538653629848,
+            "n": 997,
+            "p95_absolute_error": 30.32353712891406,
+            "rmse": 14.837290307785114
+          }
+        ],
+        "overall": {
+          "coverage": 0.873,
+          "covered": 2619,
+          "mae": 8.612757161851153,
+          "mean_width": 32.88538653629848,
+          "n": 3000,
+          "negative_lower_bounds": 441,
+          "negative_predictions": 155,
+          "p95_absolute_error": 23.12358542958254,
+          "rmse": 11.646684246507993
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": 10.47662452785174,
+      "algorithm": "xgboost",
+      "development_mean_fold_mae": 11.312884710594764,
+      "feature_set": "duration",
+      "input_columns": [
+        "Duration"
+      ],
+      "interval_threshold": 26.853050231933594,
+      "model_sha256": "be98726e908165ffc8a741784b7c911cb08cc5b339cedd18e7d2e817efacebc3",
+      "name": "xgboost_duration",
+      "relative_mae_change_vs_full": 10.156082067667004,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9632063074901446,
+            "covered": 1466,
+            "group": "female",
+            "mae": 7.979081187705643,
+            "mean_width": 53.70610046386719,
+            "n": 1522,
+            "p95_absolute_error": 23.797512054443366,
+            "rmse": 11.53588090886969
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8213802435723951,
+            "covered": 1214,
+            "group": "male",
+            "mae": 15.142352430843049,
+            "mean_width": 53.70610046386719,
+            "n": 1478,
+            "p95_absolute_error": 45.26422424316405,
+            "rmse": 21.126406289872307
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9058441558441559,
+            "covered": 1395,
+            "group": "20-39",
+            "mae": 10.97734393531626,
+            "mean_width": 53.70610046386719,
+            "n": 1540,
+            "p95_absolute_error": 33.66297988891601,
+            "rmse": 15.553786741844032
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9312714776632303,
+            "covered": 813,
+            "group": "40-59",
+            "mae": 9.216229462541666,
+            "mean_width": 53.70610046386719,
+            "n": 873,
+            "p95_absolute_error": 28.70639038085937,
+            "rmse": 13.245134914030158
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8040885860306644,
+            "covered": 472,
+            "group": "60-79",
+            "mae": 16.309506779025725,
+            "mean_width": 53.70610046386719,
+            "n": 587,
+            "p95_absolute_error": 52.06694183349605,
+            "rmse": 23.942725298413993
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9989701338825953,
+            "covered": 970,
+            "group": "1-10",
+            "mae": 4.209754790876724,
+            "mean_width": 53.70610046386719,
+            "n": 971,
+            "p95_absolute_error": 12.755638122558594,
+            "rmse": 5.971206786431512
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9253875968992248,
+            "covered": 955,
+            "group": "11-20",
+            "mae": 11.192380942115488,
+            "mean_width": 53.70610046386719,
+            "n": 1032,
+            "p95_absolute_error": 29.853050231933594,
+            "rmse": 14.540579579875724
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.757271815446339,
+            "covered": 755,
+            "group": "21-30",
+            "mae": 18.94317896315901,
+            "mean_width": 53.70610046386719,
+            "n": 997,
+            "p95_absolute_error": 50.51139831542969,
+            "rmse": 24.7230486709756
+          }
+        ],
+        "overall": {
+          "coverage": 0.8933333333333333,
+          "covered": 2680,
+          "mae": 11.508186153491337,
+          "mean_width": 53.70610046386719,
+          "n": 3000,
+          "negative_lower_bounds": 571,
+          "negative_predictions": 0,
+          "p95_absolute_error": 36.195828247070295,
+          "rmse": 16.95298321560924
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": 7.208145299553871,
+      "algorithm": "xgboost",
+      "development_mean_fold_mae": 8.241573862565328,
+      "feature_set": "basic",
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration"
+      ],
+      "interval_threshold": 19.0816650390625,
+      "model_sha256": "b6fe07220a9bfbc19679cd60589c5c09d0b23f3571b4b40feddd1749c151b1a6",
+      "name": "xgboost_basic",
+      "relative_mae_change_vs_full": 6.9876051225583495,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9316688567674113,
+            "covered": 1418,
+            "group": "female",
+            "mae": 6.946726796034914,
+            "mean_width": 38.163330078125,
+            "n": 1522,
+            "p95_absolute_error": 20.946131896972656,
+            "rmse": 9.850852282574971
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8491204330175913,
+            "covered": 1255,
+            "group": "male",
+            "mae": 9.571179020308028,
+            "mean_width": 38.163330078125,
+            "n": 1478,
+            "p95_absolute_error": 28.830187988281246,
+            "rmse": 13.380545469144721
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8850649350649351,
+            "covered": 1363,
+            "group": "20-39",
+            "mae": 8.305366039043896,
+            "mean_width": 38.163330078125,
+            "n": 1540,
+            "p95_absolute_error": 26.279447174072263,
+            "rmse": 11.857595569828876
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8923253150057274,
+            "covered": 779,
+            "group": "40-59",
+            "mae": 8.175791933501026,
+            "mean_width": 38.163330078125,
+            "n": 873,
+            "p95_absolute_error": 25.13563537597656,
+            "rmse": 11.451420607336614
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9045996592844975,
+            "covered": 531,
+            "group": "60-79",
+            "mae": 8.162505481271564,
+            "mean_width": 38.163330078125,
+            "n": 587,
+            "p95_absolute_error": 23.454381561279273,
+            "rmse": 11.76897080354116
+          },
+          {
+            "axis": "duration",
+            "coverage": 1.0,
+            "covered": 971,
+            "group": "1-10",
+            "mae": 3.1670938862831046,
+            "mean_width": 38.163330078125,
+            "n": 971,
+            "p95_absolute_error": 8.937533378601074,
+            "rmse": 4.301528559349317
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9205426356589147,
+            "covered": 950,
+            "group": "11-20",
+            "mae": 8.354971804360087,
+            "mean_width": 38.163330078125,
+            "n": 1032,
+            "p95_absolute_error": 21.901393699645993,
+            "rmse": 10.740024073872307
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.7542627883650953,
+            "covered": 752,
+            "group": "21-30",
+            "mae": 13.060723881544536,
+            "mean_width": 38.163330078125,
+            "n": 997,
+            "p95_absolute_error": 33.217211914062496,
+            "rmse": 16.617341323578618
+          }
+        ],
+        "overall": {
+          "coverage": 0.891,
+          "covered": 2673,
+          "mae": 8.239706925193468,
+          "mean_width": 38.163330078125,
+          "n": 3000,
+          "negative_lower_bounds": 403,
+          "negative_predictions": 4,
+          "p95_absolute_error": 25.682664299011225,
+          "rmse": 11.723387423970806
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": -0.053803755561510735,
+      "algorithm": "xgboost",
+      "development_mean_fold_mae": 1.080118335673506,
+      "feature_set": "heart_rate",
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate"
+      ],
+      "interval_threshold": 2.228363037109375,
+      "model_sha256": "b3a9b43dede277019abb723276bc911e8963b3ad705e8baf110ff8eaea099194",
+      "name": "xgboost_heart_rate",
+      "relative_mae_change_vs_full": -0.05215757762232661,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9487516425755584,
+            "covered": 1444,
+            "group": "female",
+            "mae": 0.7699711790379338,
+            "mean_width": 4.45672607421875,
+            "n": 1522,
+            "p95_absolute_error": 2.275618362426758,
+            "rmse": 1.101416872250058
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8633288227334236,
+            "covered": 1276,
+            "group": "male",
+            "mae": 1.1917303624753217,
+            "mean_width": 4.45672607421875,
+            "n": 1478,
+            "p95_absolute_error": 3.564284133911128,
+            "rmse": 1.9478386202891789
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9344155844155844,
+            "covered": 1439,
+            "group": "20-39",
+            "mae": 0.8391128069394594,
+            "mean_width": 4.45672607421875,
+            "n": 1540,
+            "p95_absolute_error": 2.488714218139648,
+            "rmse": 1.209683911985609
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8820160366552119,
+            "covered": 770,
+            "group": "40-59",
+            "mae": 1.0470759585960625,
+            "mean_width": 4.45672607421875,
+            "n": 873,
+            "p95_absolute_error": 3.204620361328125,
+            "rmse": 1.487566322847725
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8705281090289608,
+            "covered": 511,
+            "group": "60-79",
+            "mae": 1.2384030250308866,
+            "mean_width": 4.45672607421875,
+            "n": 587,
+            "p95_absolute_error": 3.618447875976549,
+            "rmse": 2.35974664094723
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9938208032955715,
+            "covered": 965,
+            "group": "1-10",
+            "mae": 0.47386435315734204,
+            "mean_width": 4.45672607421875,
+            "n": 971,
+            "p95_absolute_error": 1.2555713653564453,
+            "rmse": 0.6307597729584395
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9321705426356589,
+            "covered": 962,
+            "group": "11-20",
+            "mae": 0.946344769278238,
+            "mean_width": 4.45672607421875,
+            "n": 1032,
+            "p95_absolute_error": 2.511672210693358,
+            "rmse": 1.2784521042482062
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.7953861584754263,
+            "covered": 793,
+            "group": "21-30",
+            "mae": 1.5010266012270208,
+            "mean_width": 4.45672607421875,
+            "n": 997,
+            "p95_absolute_error": 3.941717529296875,
+            "rmse": 2.3231745828324293
+          }
+        ],
+        "overall": {
+          "coverage": 0.9066666666666666,
+          "covered": 2720,
+          "mae": 0.9777578700780869,
+          "mean_width": 4.45672607421875,
+          "n": 3000,
+          "negative_lower_bounds": 9,
+          "negative_predictions": 0,
+          "p95_absolute_error": 2.985256195068359,
+          "rmse": 1.576283666321732
+        }
+      }
+    },
+    {
+      "absolute_mae_change_vs_full": 0.0,
+      "algorithm": "xgboost",
+      "development_mean_fold_mae": 1.1174058119513466,
+      "feature_set": "full",
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate",
+        "Body_Temp"
+      ],
+      "interval_threshold": 2.283203125,
+      "model_sha256": "c325c8beb0566d71e4709bfb30c9c15de816982a89586f4104d78ba1aa0c0eea",
+      "name": "xgboost_full",
+      "relative_mae_change_vs_full": 0.0,
+      "test": {
+        "groups": [
+          {
+            "axis": "gender",
+            "coverage": 0.9441524310118266,
+            "covered": 1437,
+            "group": "female",
+            "mae": 0.8074655296298113,
+            "mean_width": 4.56640625,
+            "n": 1522,
+            "p95_absolute_error": 2.380703735351563,
+            "rmse": 1.155714448902959
+          },
+          {
+            "axis": "gender",
+            "coverage": 0.8538565629228687,
+            "covered": 1262,
+            "group": "male",
+            "mae": 1.2623290533303246,
+            "mean_width": 4.56640625,
+            "n": 1478,
+            "p95_absolute_error": 3.728220367431637,
+            "rmse": 2.0293225900207594
+          },
+          {
+            "axis": "age",
+            "coverage": 0.9285714285714286,
+            "covered": 1430,
+            "group": "20-39",
+            "mae": 0.8960131523671089,
+            "mean_width": 4.56640625,
+            "n": 1540,
+            "p95_absolute_error": 2.5833152770996084,
+            "rmse": 1.2724601875883992
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8671248568155785,
+            "covered": 757,
+            "group": "40-59",
+            "mae": 1.110716798870834,
+            "mean_width": 4.56640625,
+            "n": 873,
+            "p95_absolute_error": 3.3235992431640615,
+            "rmse": 1.5733931101563934
+          },
+          {
+            "axis": "age",
+            "coverage": 0.8722316865417377,
+            "covered": 512,
+            "group": "60-79",
+            "mae": 1.2694529077669627,
+            "mean_width": 4.56640625,
+            "n": 587,
+            "p95_absolute_error": 3.909655761718746,
+            "rmse": 2.4295375206612477
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9927909371781668,
+            "covered": 964,
+            "group": "1-10",
+            "mae": 0.48618146295282305,
+            "mean_width": 4.56640625,
+            "n": 971,
+            "p95_absolute_error": 1.336909294128418,
+            "rmse": 0.6427788324615946
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.9224806201550387,
+            "covered": 952,
+            "group": "11-20",
+            "mae": 1.0146956628607224,
+            "mean_width": 4.56640625,
+            "n": 1032,
+            "p95_absolute_error": 2.73338050842285,
+            "rmse": 1.3656035355860032
+          },
+          {
+            "axis": "duration",
+            "coverage": 0.7853560682046138,
+            "covered": 783,
+            "group": "21-30",
+            "mae": 1.5801772841718515,
+            "mean_width": 4.56640625,
+            "n": 997,
+            "p95_absolute_error": 4.266448974609372,
+            "rmse": 2.4106485707678673
+          }
+        ],
+        "overall": {
+          "coverage": 0.8996666666666666,
+          "covered": 2699,
+          "mae": 1.0315616256395976,
+          "mean_width": 4.56640625,
+          "n": 3000,
+          "negative_lower_bounds": 8,
+          "negative_predictions": 0,
+          "p95_absolute_error": 3.121220397949217,
+          "rmse": 1.6451468686558262
+        }
+      }
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Frozen-system reserved-test evaluation on a previously explored benchmark; not external validation",
+  "selection_manifest_sha256": "3625a860fc2be6ca4f5b32ea6d40ebdf505d435ae05d38b664ede8dbaf080695",
+  "selection_uses_test_or_calibration": false,
+  "source_runs_sha256": {
+    "baseline": "e5c41e690b671c47ee06dbe9e793e6cb7cf12e5f0b12d9b09e7e2b15814eb57a",
+    "comparison": "49564defac2360e95529b2eb7b071294e0d86032103a50266f634a2c90a80a1a",
+    "reliability": "3c210adb9e9f1637776ad4ccf208c15407e6c26d0489a01c921b7d33d7265a62"
+  },
+  "source_sha256": "411400c2854c99ba508c54d05926d3f826fdb2f7d42dc9d4882b24b2a52d3600",
+  "status": "passed",
+  "test_evaluated": true,
+  "test_release_sha256": "f3ee8cc2c741703e14ddcaadf243085dd9419a68d4e1edecb6600796d9604435",
+  "test_rows": 3000,
+  "verification": {
+    "all_2000_paired_bootstrap_draws_recomputed": true,
+    "all_point_group_and_interval_metrics_recomputed": true,
+    "all_test_ids_labels_and_predictions_verified": true,
+    "fit_count": 0,
+    "four_planned_comparisons_and_margin_decisions_verified": true,
+    "model_and_threshold_hashes_unchanged": true,
+    "original_files_global_assignments_and_historical_reports_unchanged": true,
+    "pretest_freeze_commit": "42f5424111825a2ac9828c715fab16a4106b0077",
+    "primary_selection_recomputed_from_development_only": true,
+    "private_artifacts_git_ignored": true,
+    "quantile_refit_count": 0,
+    "release_after_manifest_before_test_analysis": true,
+    "status": "passed",
+    "systems_evaluated": 9,
+    "test_evaluated": true,
+    "test_rows": 3000,
+    "unit_tests_passed": 63
+  }
+}
