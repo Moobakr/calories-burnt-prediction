@@ -2,7 +2,7 @@
 
 A simple machine learning project that predicts the calorie label in an exercise dataset. The notebook walks through the analysis, and a separate desktop app lets you try the trained model.
 
-**[Read the notebook](Calories_burnt_prediction_clean.ipynb)** · **[View the GUI script](calorie_calculator.py)** · **[Explore the separate research project](https://github.com/Moobakr/calorie-lab-research)**
+**[Read the notebook](Calories_burnt_prediction.ipynb)** · **[View the GUI script](calorie_calculator.py)** · **[Explore the separate research project](https://github.com/Moobakr/calorie-lab-research)**
 
 ## What the project does
 
@@ -17,7 +17,7 @@ The saved notebook run has **test MAE 1.034** and **test RMSE 1.476** for tuned 
 
 | File | Purpose |
 | --- | --- |
-| `Calories_burnt_prediction_clean.ipynb` | Analysis, model comparison, explanations and model export |
+| `Calories_burnt_prediction.ipynb` | Analysis, model comparison, explanations and model export |
 | `calorie_calculator.py` | Desktop interface; loads the exported model without retraining |
 | `exercise.csv` | Dataset used by the notebook: 15,000 rows before cleaning |
 | `requirements.txt` | Python dependencies |
@@ -31,7 +31,7 @@ Use **Python 3.12**, the version used to check this project. Download or clone t
 python -m pip install -r requirements.txt
 ```
 
-1. Open `Calories_burnt_prediction_clean.ipynb` in VS Code or Jupyter.
+1. Open `Calories_burnt_prediction.ipynb` in VS Code or Jupyter.
 2. Select the Python environment where you installed the dependencies and **run all cells**. Keep the notebook's working directory set to this folder; the CSV path is `exercise.csv`.
 3. The notebook creates `calorie_model.joblib`. Keep it beside the GUI script, then run:
 

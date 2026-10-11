@@ -12,7 +12,7 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 model_path = Path(__file__).with_name("calorie_model.joblib")
 if not model_path.exists():
-    raise SystemExit("Run all cells in Calories_burnt_prediction_clean.ipynb first, then keep calorie_model.joblib beside this script.")
+    raise SystemExit("Run all cells in Calories_burnt_prediction.ipynb first, then keep calorie_model.joblib beside this script.")
 xgb_pipeline = joblib.load(model_path)
 best_scaler = xgb_pipeline.named_steps["scaler"]
 xgb_explainer = shap.TreeExplainer(xgb_pipeline.named_steps["model"])
