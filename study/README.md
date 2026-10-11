@@ -1,12 +1,12 @@
 # Item 10: usability and understanding
 
-**Status: prepared, not conducted. No participant results or measured impact exist yet.** English protocol v1.0, 11 October 2026. This is a small formative study of the demo, not validation of calorie expenditure or a representative survey.
+**Status: skipped at the author's request on 11 October 2026; not conducted. No participant results or measured impact exist.** The kit is retained for optional future use; collection is not an active task. English protocol v1.0, 11 October 2026. This is a small formative study of the demo, not validation of calorie expenditure or a representative survey.
 
 The study asks whether first-time visitors can choose an appropriate input route, obtain an estimate without inventing sensor readings, and explain the benchmark and interval limitations. Plan one excluded pilot and **six retained main participants**. Invite adults who can read English and have not used or helped develop this demo. Seek varied ML familiarity and, where feasible, at least two phone users; disclose actual recruitment/device mix rather than inventing quotas. Convenience recruitment and an author-moderator limit generalization. Do not exclude failures or slow users to improve results.
 
 The small moderated round and think-aloud approach follow [GOV.UK planning guidance](https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service) and [moderated usability guidance](https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing). Six is a practical project choice within that guidance, not statistical power for population claims. Our tasks, rubric, questionnaire and iteration criteria are custom, not a validated usability scale.
 
-## Run the study
+## Optional: run the study if resumed
 
 1. Read [MODERATOR_GUIDE.md](MODERATOR_GUIDE.md). Send only [PARTICIPANT_GUIDE.md](PARTICIPANT_GUIDE.md) to volunteers. The invitation text below is ready to copy; no invitations have been sent by the assistant.
 2. From the project directory, initialize the ignored local response folder. **The prepared research checkout already has blank `study/private/round-1/` sheets; skip initialization there. In a fresh or standalone copy, run the command below.** It refuses to replace existing records:
@@ -30,7 +30,7 @@ The small moderated round and think-aloud approach follow [GOV.UK planning guida
    & .\.venv\Scripts\python.exe -m calorie_estimation.usability summarize --directory study/private/round-1 --output runs/usability-round-1
    ```
 
-7. Complete [RESULTS_TEMPLATE.md](RESULTS_TEMPLATE.md) using the generated counts, anonymized observations and actual limitations. Review everything before copying aggregate findings into `docs/`. Keep real response files, session notes and participant codes private. Item 10 stays open until genuine sessions are collected and analyzed.
+7. Complete [RESULTS_TEMPLATE.md](RESULTS_TEMPLATE.md) using the generated counts, anonymized observations and actual limitations. Review everything before copying aggregate findings into `docs/`. Keep real response files, session notes and participant codes private. A completed-study claim requires genuine sessions and analysis; item 10 is currently skipped.
 
 The CLI uses the Python standard library only. It never imports models, reads the calorie dataset or changes the app. `init`/`freeze`/`summarize` preserve existing destinations. Freeze hashes the protocol, both guides, header templates and analysis code. A later change causes analysis to refuse the old freeze; disclose a new study version/round instead of overwriting the record. The freeze record contains a local timestamp and hashes, not independently verified registration. `check-demo` is a public read-only network check.
 

@@ -108,7 +108,19 @@ first-time adult volunteers, four tasks, a moderator rubric and custom feedback
 questions. Private response templates, protocol freeze and aggregate analysis
 commands are included. **No participant sessions or impact results exist yet.**
 The current checkout has blank response sheets in ignored `study/private/round-1/`.
-Start with the pilot; freeze the reviewed protocol before main data collection.
+**Collection was skipped at the author's request on 11 October 2026.** The kit remains available for optional future use.
+
+## Application package (item 11)
+
+The [portfolio package](portfolio/README.md) includes a
+[two-page project brief](output/pdf/Calorie_Lab_Project_Brief.pdf),
+[editable case study](portfolio/PROJECT_CASE_STUDY.md),
+[CV and motivation drafts](portfolio/APPLICATION_TEXT.md),
+[interview guide](portfolio/INTERVIEW_GUIDE.md) and
+[contribution and claims record](portfolio/CONTRIBUTIONS_AND_CLAIMS.md).
+The package reports benchmark evidence and substantial AI assistance;
+user benefit is unmeasured. The research/portfolio source revision is local;
+GitHub publication is pending.
 
 ## Interactive demo
 

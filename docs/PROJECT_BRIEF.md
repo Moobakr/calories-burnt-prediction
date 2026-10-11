@@ -1,6 +1,6 @@
 # Calorie estimation with fewer measurements
 
-Project brief, version 1.0 — 10 October 2026
+Project brief, version 1.1 - 11 October 2026
 
 **Purpose:** investigate the tradeoff between predictive error and measurement requirements, and produce reproducible evidence of when a simpler estimator is sufficient. The project will demonstrate experimental design, software quality, error analysis, and honest interpretation for an applied AI portfolio.
 
@@ -10,7 +10,7 @@ Project brief, version 1.0 — 10 October 2026
 
 The task is **after-session estimation** of the dataset's recorded calorie label. Heart rate and temperature are treated as session measurements when available; their exact measurement timing remains undocumented. This is not a prediction of calories for a future workout.
 
-The immediate audience is researchers and students evaluating applied regression systems. A later demo will communicate the findings and input tradeoffs. An interface usability study will evaluate task completion and understanding of the output.
+The immediate audience is researchers and students evaluating applied regression systems. The deployed Static demo communicates the findings and input tradeoffs. The interface usability study was skipped at the author's request; no participant evidence exists.
 
 ## Data decision
 
@@ -29,7 +29,7 @@ These datasets will not be pooled. WEEE uses different signals and would require
 | Heart rate | Basic inputs plus heart rate | What incremental value does heart rate provide? |
 | Full | All seven original inputs | What incremental value does temperature provide? |
 
-Use a mean predictor as a sanity check. Compare a regularized linear model and XGBoost across the input sets using the same partitions and tuning budget. Tune regularization as well as XGBoost parameters. Deep learning and additional model families are outside the first milestone.
+Use a mean predictor as a sanity check. Compare a regularized linear model and XGBoost across the input sets using the same partitions, with matched tuning budgets across input sets within each model family. Tune regularization as well as XGBoost parameters. Deep learning and additional model families are outside the first milestone.
 
 ## Evaluation and success criteria
 
@@ -45,6 +45,6 @@ The project succeeds by producing reproducible, informative results, including a
 
 The intended contribution is a documented study of incremental input value, uncertainty, and failure cases, supported by a consistent prediction pipeline. No new algorithm or priority over existing research is claimed.
 
-Deliver: a reproducible repository, experimental results, a concise research report, a demo using the evaluated pipeline, and a small usability study. Application materials will describe measured findings and the author's actual contribution.
+Deliver: a reproducible repository, experimental results, a concise research report, a demo using the evaluated pipeline, and an application package describing measured benchmark findings and actual contributions. A usability kit is retained, but collection was skipped.
 
-**Implementation:** items 3 and 4 establish reproducible preparation, frozen partitions, matched development CV folds, and unfitted preprocessing. See [the README](../README.md) and [evaluation protocol](EVALUATION_PROTOCOL.md) for completed checks. Next is item 5: development-only baseline fitting. See [the experiment plan](EXPERIMENT_PLAN.md) for the controls and boundaries.
+**Implementation:** items 3?9 are complete: reproducible preparation, frozen evaluation, baselines, input comparison, reliability analysis, one-time final test evaluation and a verified live Static demo. Item 10 is skipped; item 11 materials are prepared on research/portfolio with GitHub source publication pending. See [the checklist](PROJECT_CHECKLIST.md), [final report](FINAL_EVALUATION_REPORT.md) and [portfolio](../portfolio/README.md).

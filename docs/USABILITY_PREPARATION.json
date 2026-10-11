@@ -1,5 +1,5 @@
 {
-  "status": "prepared_not_conducted",
+  "status": "deferred_not_conducted",
   "prepared_date": "2026-10-11",
   "language": "English",
   "protocol_version": "1.0",
@@ -22,12 +22,18 @@
   "training_fits": 0,
   "new_test_scoring_runs": 0,
   "measured_user_impact": "none yet",
-  "remaining": [
+  "portable_freeze_without_git_verified": true,
+  "decision": {
+    "date": "2026-10-11",
+    "instruction": "skip that part",
+    "interpretation": "user requested skipping usability collection; retain kit for optional future use"
+  },
+  "optional_steps_if_resumed": [
     "one genuine pilot",
     "review and freeze protocol before main collection",
     "six genuine retained main sessions",
     "aggregate and qualitative analysis",
     "review actual findings and limitations before publication"
   ],
-  "portable_freeze_without_git_verified": true
+  "remaining_required_steps_for_current_package": []
 }
