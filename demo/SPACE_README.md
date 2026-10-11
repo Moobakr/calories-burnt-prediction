@@ -25,4 +25,4 @@ docker build -t calorie-lab .
 docker run --rm -p 7860:7860 calorie-lab
 ```
 
-Open `http://localhost:7860`. Hugging Face builds this Dockerfile and exposes port 7860. This is a small CPU demo with no durable storage or user accounts. Free Spaces can sleep when idle; availability and hosting limits depend on Hugging Face.
+Open `http://localhost:7860`. Hugging Face builds this Dockerfile and exposes port 7860. This is a small CPU demo with no durable storage or user accounts. Creating CPU Docker Spaces currently requires a paid subscription. CPU Spaces can sleep when idle; availability and hosting limits depend on Hugging Face. A free browser-only Static implementation is also available in the research repository.

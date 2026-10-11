@@ -13,7 +13,7 @@
   "new_test_scoring_runs": 0,
   "browser_visual_check": "incomplete: Computer Use could not verify current Chrome URL",
   "docker_build": "not run: Docker engine unavailable",
-  "hosted_deployment": "pending Hugging Face authentication",
+  "hosted_deployment": "Docker creation rejected with HTTP 402 after successful login; free Static deployment verified separately in STATIC_DEMO_VERIFICATION.json",
   "fictional_scenario_outputs": [
     {
       "mode": "basic",

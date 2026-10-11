@@ -17,3 +17,4 @@ notebooks/legacy/*.ipynb
 runs/*
 !runs/.gitkeep
 .pytest_cache/
+.cache/

@@ -13,7 +13,7 @@ groups and workout durations?
 **Status:** items 3–8 provide reproducible preparation, frozen partitions,
 shared development CV folds, mean/Ridge baselines and a matched XGBoost input
 comparison, subgroup/noise/interval audits and frozen final test evaluation.
-**71 tests pass.** The development-selected heart-rate XGBoost system has
+**71 Python tests and four JavaScript checks pass.** The development-selected heart-rate XGBoost system has
 test MAE **0.978**, versus **1.032** for full inputs. Omitting temperature
 passes the predefined benchmark rule; omitting both sensors fails it.
 See [the final report](docs/FINAL_EVALUATION_REPORT.md) for all nine systems,
@@ -105,7 +105,17 @@ console command `calorie-estimation` provides the same CLI.
 
 The Calorie Lab implementation uses the exact frozen XGBoost pipelines, with
 four input modes, validated ranges, fictional examples, fixed reference
-intervals and the observed error/coverage limitations. Run locally with:
+intervals and the observed error/coverage limitations.
+**[Open the free Hugging Face demo](https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors)**.
+The hosted Static Space evaluates exported forests in the browser without a
+prediction server. Its served assets and exact prediction/interval parity
+passed verification on 5,854 synthetic sessions. The author confirmed the
+page displays and updates when switching fictional examples/input modes;
+this is a user-reported manual check, not an automated browser or mobile audit.
+See the [Static deployment guide](docs/STATIC_DEMO_GUIDE.md) and
+[hosted verification](docs/STATIC_DEMO_VERIFICATION.json).
+
+The retained Python/Waitress implementation runs locally with:
 
 ```powershell
 & .\scripts\demo.ps1
@@ -113,9 +123,9 @@ intervals and the observed error/coverage limitations. Run locally with:
 
 Open `http://127.0.0.1:7860`; stop with Ctrl+C. The separate serving dependency
 is Waitress 3.0.2. This does not train models or score the reserved test again.
-A Docker Space package targets `Moobakr/calorie-lab-fewer-sensors` on Hugging
-Face. API/parity and package checks passed; cloud deployment, container
-execution and visual browser verification remain pending. See the
+Docker Space creation was rejected with HTTP 402 because current Hugging Face
+CPU Docker hosting requires a paid plan. The free Static version is deployed
+instead; local container execution remains unverified. See the
 [demo and deployment guide](docs/DEMO_GUIDE.md) and
 [verification record](docs/DEMO_VERIFICATION.json).
 
@@ -179,7 +189,7 @@ artifacts. Reconstructed experiments need their own verified source snapshot.
 | `configs/project.toml` | Four input sets, evaluation settings, Ridge grid, fixed XGBoost search, timing and reliability protocols |
 | `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
 | `tests/` | Synthetic fixtures for failure modes and repeatability |
-| `demo/` | Responsive interface, Docker Space template, serving dependency and verified-package publisher |
+| `demo/` | Responsive interface, browser evaluator, retained Docker template and verified-package publisher |
 | `docs/` | Audit, research brief, experiment plan and implementation verification |
 | `notebooks/legacy/` | Archived GitHub notebook and optional ignored local reference; never executed by these commands |
 
