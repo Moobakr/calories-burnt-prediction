@@ -1,3 +1,6 @@
 * text=auto eol=lf
 *.ipynb -text
 *.csv -text
+
+# Preserve PDF bytes and cross-reference offsets in source archives.
+*.pdf binary
