@@ -1,0 +1,13 @@
+# Generated model and notebook cache
+*.joblib
+*.pkl
+*.pickle
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+
+# Local Python environments and settings
+.venv/
+venv/
+.env
+.env.*
