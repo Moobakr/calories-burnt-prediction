@@ -1,229 +1,46 @@
-# Calorie estimation with fewer measurements
+# Calorie Lab: fewer measurements, clearer limitations
 
-This is the research revision of
-[Moobakr/calories-burnt-prediction](https://github.com/Moobakr/calories-burnt-prediction).
-The original GitHub notebook is preserved in
-[`notebooks/legacy/github/`](notebooks/legacy/github/Calories_burnt_prediction_project.ipynb)
-as a historical reference. The commands below replace its execution workflow.
+An applied machine learning project asking: **Can we estimate a calorie benchmark's labels with fewer measurements, and when are the results unreliable?**
 
-Research question: how much does prediction error change when heart rate and
-body temperature are removed, and how does that change vary across represented
-groups and workout durations?
+I expanded an existing prediction notebook into a reproducible comparison of models, an analysis of their failure cases, and a working browser demo. The project combines Python, scikit-learn, XGBoost, JavaScript and Hugging Face Static Spaces.
 
-**Status:** items 3–8 provide reproducible preparation, frozen partitions,
-shared development CV folds, mean/Ridge baselines and a matched XGBoost input
-comparison, subgroup/noise/interval audits and frozen final test evaluation.
-**82 Python tests and four JavaScript checks pass.** The development-selected heart-rate XGBoost system has
-test MAE **0.978**, versus **1.032** for full inputs. Omitting temperature
-passes the predefined benchmark rule; omitting both sensors fails it.
-See [the final report](docs/FINAL_EVALUATION_REPORT.md) for all nine systems,
-paired comparisons and subgroup coverage, or [the reliability report](docs/RELIABILITY_REPORT.md)
-for observed coverage gaps and noise sensitivity, [the input comparison](docs/INPUT_COMPARISON.md)
-for error versus input requirements, prediction timings and limitations, or
-[baseline results](docs/BASELINE_RESULTS.md) for the earlier linear milestone.
-Development scores are tuning estimates. Calibration uses separate 1,500-row
-interval-fit and interval-audit subsets. The 3,000-row final test has now been
-evaluated without refitting or recalibration. Primary interval coverage is
-90.7% overall but 79.5% for 21–30 minute sessions. Real-world usefulness
-remains unmeasured; errors use interpreted kcal/session.
-The target is the supplied benchmark's recorded calorie label. Collection
-methods, label generation, and dataset licensing remain unresolved.
+**[Try the live demo](https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors)** · **[Read the two-page brief](output/pdf/Calorie_Lab_Project_Brief.pdf)** · **[Explore the case study](portfolio/PROJECT_CASE_STUDY.md)**
 
-## Quick start (Windows PowerShell)
+## What I investigated
 
-Install Python **3.12** (64-bit), then open PowerShell in this project folder.
-Package installation needs internet access. Activation is unnecessary: the
-commands explicitly use the isolated environment.
+The models use four levels of information: workout duration alone; basic measurements; basic measurements plus heart rate; and all inputs including body temperature. Comparing these routes tests whether the extra measurements improve predictions.
 
-```powershell
-& .\scripts\setup.ps1 -Python python
-& .\.venv\Scripts\python.exe -m calorie_estimation stage --source "B:\calories\exercise.csv" --notebook "B:\calories\Calories_burnt_prediction_project.ipynb"
-& .\scripts\compare-inputs.ps1
-& .\scripts\reliability.ps1
-```
+The supplied dataset contains 15,000 records. After removing one duplicate, the study used fixed development, calibration and test partitions. Models shared the same development folds; each XGBoost input set received the same search budget. The final test contained 3,000 records and was evaluated once, after model selection and interval settings were frozen.
 
-Substitute your own CSV path. `--notebook` is optional. If PowerShell blocks
-scripts, run the equivalent commands listed below; changing a machine-wide
-execution policy is unnecessary. The CSV must match the audited SHA-256. If it
-does not, review the input and explicitly update the audit before adopting it.
-There is no automatic download because the original source and license are
-unresolved. Raw and derived observations stay local and are ignored by Git.
+## What the results show
 
-## What runs
+| Finding | Evidence | Meaning |
+| --- | --- | --- |
+| Temperature could be omitted when heart rate was available. | Six-input XGBoost test MAE **0.978**, versus **1.032** with all seven inputs. The paired comparison passed the predefined +10% error tolerance. | One fewer input was sufficient for this benchmark. |
+| Removing both sensor measurements made predictions worse. | Basic-input XGBoost test MAE **8.240**. | Heart rate carried useful information in these records. |
+| A good overall score concealed a reliability gap. | Nominal 90% prediction intervals covered **90.67%** overall, but only **79.54%** for 21–30 minute sessions. | Reliability needs to be checked across groups, not just averaged. |
 
-`setup.ps1` creates `.venv` without system packages, installs the exact versions
-in `requirements.lock.txt`, installs this project in editable mode, runs
-`pip check`, and checks every pinned version plus imports of the ML libraries.
-Python 3.12 is required; the verified patch version is recorded in the report.
-The lock records versions, not wheel hashes. Other platforms are unverified;
-ML fits may differ across hardware or library builds.
+**MAE** is the average absolute difference between a prediction and the recorded label; lower is better. Errors use interpreted kcal per session. **Interval coverage** is the fraction of recorded labels inside the prediction range.
 
-`prepare.ps1` validates the data, runs synthetic integrity tests, and writes:
+## What this project demonstrates
 
-- `data/processed/modeling_table.csv`: 14,999 rows, keeping source column order,
-  units, category strings, and identifiers for traceability.
-- `data/processed/deduplication_log.csv`: removed and retained source IDs and
-  CSV row numbers (one-based, including the header).
-- `data/processed/preparation_manifest.json`: input/output hashes, exact duplicate
-  policy, code/configuration fingerprints, and row counts.
-- `runs/environment.json` and `runs/validation.json`: local verification records.
+- **Experimental design:** simple baselines, controlled input comparisons and a frozen final evaluation.
+- **Critical analysis:** subgroup coverage gaps, simulated sensor noise and explicit limits on the evidence.
+- **Implementation:** a public demo running four frozen models directly in the browser.
+- **Verification:** 82 Python tests and four JavaScript checks passed; browser predictions and interval bounds matched Python exactly on 5,854 synthetic cases.
 
-The duplicate key includes all columns except `User_ID`, including the target.
-It keeps the first occurrence in source order; numeric equality recognizes
-equivalent spellings such as `39.5` and `39.50`. Only duplicate observations are
-removed. Preparation does not encode categories, scale, impute, split data, or
-fit a model. Learned preprocessing must be fitted within each training fold
-when model fitting begins.
-The preparation manifest is written last; later consumers must verify its
-output hashes before use. Repeating preparation on the same input and code
-produces identical table, log, and manifest bytes.
+## My contribution and AI assistance
 
-## Individual commands
+I supplied the starting notebook/data, directed project choices, selected free hosting, completed account setup and checked the live demo. An AI assistant provided substantial implementation, analysis-tooling and documentation support. The [contribution record](portfolio/CONTRIBUTIONS_AND_CLAIMS.md) explains those roles.
 
-```powershell
-python -m venv .venv
-& .\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
-& .\.venv\Scripts\python.exe -m pip install --no-build-isolation --no-deps -e .
-& .\.venv\Scripts\python.exe -m pip check
-& .\.venv\Scripts\python.exe -m calorie_estimation doctor --require-ml --output runs/environment.json
-& .\.venv\Scripts\python.exe -m calorie_estimation validate --output runs/validation.json
-& .\.venv\Scripts\python.exe -m unittest discover -s tests -v
-& .\.venv\Scripts\python.exe -m calorie_estimation prepare
-& .\.venv\Scripts\python.exe -m calorie_estimation split
-& .\.venv\Scripts\python.exe -m calorie_estimation verify-splits
-& .\.venv\Scripts\python.exe -m calorie_estimation baselines --run-dir runs/baselines-v1
-& .\.venv\Scripts\python.exe -m calorie_estimation compare-inputs --baseline-run-dir runs/baselines-v1 --run-dir runs/input-comparison-v1
-& .\.venv\Scripts\python.exe -m calorie_estimation reliability --baseline-run-dir runs/baselines-v1 --comparison-run-dir runs/input-comparison-v1 --run-dir runs/reliability-v1
-```
+## Limits and next step
 
-`validate --data PATH` and `prepare --data PATH --output-dir PATH` support
-explicit alternative locations. Defaults resolve relative to this checkout,
-regardless of the calling directory after editable installation. The installed
-console command `calorie-estimation` provides the same CLI.
+The original collection method, label construction, units and dataset license are unresolved, and the file had already been explored in the original notebook. These results measure agreement with recorded labels; they do not establish physiological accuracy. User benefit has not been measured. The next research step is a separate study using documented measured data and an independent evaluation protocol.
 
-## Usability study (item 10)
+## Explore further
 
-The [English study kit](study/README.md) is ready: one excluded pilot, six
-first-time adult volunteers, four tasks, a moderator rubric and custom feedback
-questions. Private response templates, protocol freeze and aggregate analysis
-commands are included. **No participant sessions or impact results exist yet.**
-The current checkout has blank response sheets in ignored `study/private/round-1/`.
-**Collection was skipped at the author's request on 11 October 2026.** The kit remains available for optional future use.
-
-## Application package (item 11)
-
-The [portfolio package](portfolio/README.md) includes a
-[two-page project brief](output/pdf/Calorie_Lab_Project_Brief.pdf),
-[editable case study](portfolio/PROJECT_CASE_STUDY.md),
-[CV and motivation drafts](portfolio/APPLICATION_TEXT.md),
-[interview guide](portfolio/INTERVIEW_GUIDE.md) and
-[contribution and claims record](portfolio/CONTRIBUTIONS_AND_CLAIMS.md).
-The package reports benchmark evidence and substantial AI assistance;
-user benefit is unmeasured. The research/portfolio source revision is local;
-GitHub publication is pending.
-
-## Interactive demo
-
-The Calorie Lab implementation uses the exact frozen XGBoost pipelines, with
-four input modes, validated ranges, fictional examples, fixed reference
-intervals and the observed error/coverage limitations.
-**[Open the free Hugging Face demo](https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors)**.
-The hosted Static Space evaluates exported forests in the browser without a
-prediction server. Its served assets and exact prediction/interval parity
-passed verification on 5,854 synthetic sessions. The author confirmed the
-page displays and updates when switching fictional examples/input modes;
-this is a user-reported manual check, not an automated browser or mobile audit.
-See the [Static deployment guide](docs/STATIC_DEMO_GUIDE.md) and
-[hosted verification](docs/STATIC_DEMO_VERIFICATION.json).
-
-The retained Python/Waitress implementation runs locally with:
-
-```powershell
-& .\scripts\demo.ps1
-```
-
-Open `http://127.0.0.1:7860`; stop with Ctrl+C. The separate serving dependency
-is Waitress 3.0.2. This does not train models or score the reserved test again.
-Docker Space creation was rejected with HTTP 402 because current Hugging Face
-CPU Docker hosting requires a paid plan. The free Static version is deployed
-instead; local container execution remains unverified. See the
-[demo and deployment guide](docs/DEMO_GUIDE.md) and
-[verification record](docs/DEMO_VERIFICATION.json).
-
-`evaluate-setup.ps1` runs preparation and the test suite, then creates and
-verifies frozen partitions: **8,999 development / 3,000 calibration / 3,000
-test**, with five development-only CV folds shared across all four feature
-sets. `split` and `verify-splits` accept `--prepared-dir` and `--split-dir`.
-Existing allocations are protected against silent changes. See the
-[evaluation protocol](docs/EVALUATION_PROTOCOL.md) for the exact algorithm,
-allowed use of each partition, and preprocessing requirements.
-
-`baselines.ps1` runs that setup workflow, then evaluates the training-target
-mean and six Ridge alpha settings for each input set, using development rows
-only. It selects Ridge alpha by mean-fold MAE and saves five development-fitted
-pipelines with provenance and selected OOF predictions inside `runs/`.
-Each run directory must be new; repeat with `-RunDirectory runs/baselines-repeat-1`.
-Artifacts remain local and Git-ignored. The tracked
-[aggregate metrics](docs/BASELINE_METRICS.json) contain candidate/fold scores,
-versions, fit times, and source fingerprints, without per-record observations.
-
-`compare-inputs.ps1` runs the same preparation checks, creates the baseline run
-if missing, then searches 30 identical XGBoost configurations per input set on
-the saved development folds. It verifies historical baseline hashes, IDs,
-targets, folds and scores before comparison. It records 600 CV fits, four
-development refits, input requirements and prediction timings; numeric tree
-inputs retain their original units. Repeat with a new `-RunDirectory`.
-The [aggregate comparison metrics](docs/INPUT_COMPARISON_METRICS.json) and
-[PNG chart](docs/input_comparison.png) contain no new per-record observations.
-Fitted pipelines and selected OOF records remain local under `runs/`.
-
-`reliability.ps1` requires those completed baseline/comparison runs. It replays
-the eight selected systems on the original folds (40 fits, no new search),
-checks subgroup errors and paired simulated sensor noise, and fits fixed
-90%-nominal split-conformal intervals using half the calibration partition.
-The other half provides a disjoint interval audit. The
-[aggregate reliability metrics](docs/RELIABILITY_METRICS.json) and
-[figure](docs/reliability.png) document the results; local thresholds are bound
-to exact saved model hashes and frozen for final testing. Audit results do not
-change model selection or interval settings. Repeat with a new `-RunDirectory`;
-the script preserves existing runs and never repeats the input search.
-
-`final-evaluate.ps1` releases the reserved test once, using the matching frozen
-source runs and the selection rule fixed before the reliability audit. It
-checks exact model/threshold bindings, writes a selection manifest and an
-exclusive release record, then predicts all nine systems and performs the four
-planned paired bootstrap comparisons (2,000 shared resamples, seed 2026).
-It performs no fitting or recalibration. This checkout's release is complete;
-the command now refuses another evaluation, including a new run directory.
-Inspect [the frozen selection](docs/FINAL_SELECTION.json),
-[final aggregate metrics](docs/FINAL_EVALUATION_METRICS.json) and
-[figure](docs/final_evaluation.png). Per-record outputs stay local.
-The [final report](docs/FINAL_EVALUATION_REPORT.md) explains exact source-run
-requirements for reproducing this release; the source ZIP excludes fitted
-artifacts. Reconstructed experiments need their own verified source snapshot.
-
-## Project map
-
-| Location | Purpose |
-| --- | --- |
-| `calorie_estimation/` | Preparation, frozen evaluation, pipelines, baseline/XGBoost fitting, input comparisons, reliability audits, final test release and environment checks |
-| `configs/project.toml` | Four input sets, evaluation settings, Ridge grid, fixed XGBoost search, timing and reliability protocols |
-| `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
-| `tests/` | Synthetic fixtures for failure modes and repeatability |
-| `demo/` | Responsive interface, browser evaluator, retained Docker template and verified-package publisher |
-| `docs/` | Audit, research brief, experiment plan and implementation verification |
-| `study/` | English usability protocol, participant/moderator guides, blank templates; real responses stay in ignored `study/private/` |
-| `notebooks/legacy/` | Archived GitHub notebook and optional ignored local reference; never executed by these commands |
-
-The four input sets are duration only; basic demographic measurements plus
-duration; basic plus heart rate; and full inputs including body temperature.
-Configuration loading rejects identifiers and targets as predictor columns.
-Frozen assignment files are local and Git-ignored, alongside raw and derived
-observations. The development loader excludes calibration and test rows.
-
-Read [the brief](docs/PROJECT_BRIEF.md), [experiment plan](docs/EXPERIMENT_PLAN.md),
-and [audit](docs/DATA_AUDIT.md) for study scope and limitations. The previous
-notebook has already examined this dataset, so a new split cannot establish
-previously unseen external validity. Raw data exclusion is an intentional
-publication boundary, not a resolved license. No software license is selected
-on the author's behalf yet.
+- [Final research report](docs/FINAL_EVALUATION_REPORT.md): all models, paired comparisons and uncertainty results.
+- [Reliability report](docs/RELIABILITY_REPORT.md): subgroup errors and simulated noise sensitivity.
+- [Deployment verification](docs/STATIC_DEMO_GUIDE.md): how the browser demo reproduces the Python models.
+- [Technical guide](docs/TECHNICAL_GUIDE.md): setup, commands, repository structure and reproducibility limits.
+- [Original notebook](notebooks/legacy/github/Calories_burnt_prediction_project.ipynb): preserved for comparison with the research revision.
