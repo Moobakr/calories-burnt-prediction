@@ -1,0 +1,60 @@
+schema_version = 1
+data_manifest = "data/dataset_manifest.json"
+raw_csv = "data/raw/exercise.csv"
+processed_dir = "data/processed"
+split_dir = "data/splits"
+
+[feature_sets]
+duration = ["Duration"]
+basic = ["Gender", "Age", "Height", "Weight", "Duration"]
+heart_rate = ["Gender", "Age", "Height", "Weight", "Duration", "Heart_Rate"]
+full = ["Gender", "Age", "Height", "Weight", "Duration", "Heart_Rate", "Body_Temp"]
+
+# Allocated by the split command; no model is fitted by data preparation.
+[evaluation]
+split_seed = 42
+cv_seed = 43
+development_fraction = 0.6
+calibration_fraction = 0.2
+test_fraction = 0.2
+cv_folds = 5
+bootstrap_seed = 2026
+bootstrap_resamples = 2000
+competitive_relative_mae_margin = 0.10
+
+# Frozen before item 5 benchmark fitting; tuning uses development MAE only.
+[baselines]
+ridge_alphas = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+ridge_solver = "svd"
+threads = 1
+
+# Identical sampled configurations for every input set, fixed before item 6 fits.
+[comparison]
+search_seed = 44
+model_seed = 45
+n_candidates = 30
+threads = 1
+tree_method = "hist"
+latency_warmups = 10
+latency_repeats = 100
+latency_batch_sizes = [1, 100]
+
+[comparison.search_space]
+n_estimators = [200, 400, 600]
+max_depth = [2, 3, 4, 6]
+learning_rate = [0.03, 0.05, 0.1]
+min_child_weight = [1, 5, 10]
+subsample = [0.8, 1.0]
+colsample_bytree = [0.8, 1.0]
+reg_lambda = [1.0, 5.0, 10.0]
+reg_alpha = [0.0, 0.1, 1.0]
+
+# Fixed before calibration labels are used in item 7.
+[reliability]
+nominal_coverage = 0.90
+calibration_role_seed = 46
+noise_seed = 47
+noise_draws = 20
+threads = 1
+heart_rate_noise_sd = [2.0, 5.0]
+temperature_noise_sd = [0.1, 0.3]

@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "unit_tests_passed": 71,
+  "synthetic_http_predictions_verified": 8,
+  "exact_source_pipeline_and_interval_parity": true,
+  "all_four_input_routes_verified": true,
+  "missing_sensors_invalid_inputs_and_extrapolation_rejected": true,
+  "private_routes_not_served": true,
+  "package_allowlist_and_all_hashes_verified": true,
+  "raw_data_test_predictions_and_credentials_excluded": true,
+  "frozen_research_results_and_release_unchanged": true,
+  "training_fits": 0,
+  "new_test_scoring_runs": 0,
+  "browser_visual_check": "incomplete: Computer Use could not verify current Chrome URL",
+  "docker_build": "not run: Docker engine unavailable",
+  "hosted_deployment": "Docker creation rejected with HTTP 402 after successful login; free Static deployment verified separately in STATIC_DEMO_VERIFICATION.json",
+  "fictional_scenario_outputs": [
+    {
+      "mode": "basic",
+      "fictional_example": "15-minute session",
+      "prediction": 75.59972381591797,
+      "interval": [
+        56.51805877685547,
+        94.68138885498047
+      ]
+    },
+    {
+      "mode": "basic",
+      "fictional_example": "Longer session",
+      "prediction": 219.75181579589844,
+      "interval": [
+        200.67015075683594,
+        238.83348083496094
+      ]
+    },
+    {
+      "mode": "duration",
+      "fictional_example": "15-minute session",
+      "prediction": 76.7007064819336,
+      "interval": [
+        49.84765625,
+        103.55375671386719
+      ]
+    },
+    {
+      "mode": "duration",
+      "fictional_example": "Longer session",
+      "prediction": 190.4886016845703,
+      "interval": [
+        163.63555145263672,
+        217.3416519165039
+      ]
+    },
+    {
+      "mode": "full",
+      "fictional_example": "15-minute session",
+      "prediction": 80.2891845703125,
+      "interval": [
+        78.0059814453125,
+        82.5723876953125
+      ]
+    },
+    {
+      "mode": "full",
+      "fictional_example": "Longer session",
+      "prediction": 250.5275421142578,
+      "interval": [
+        248.2443389892578,
+        252.8107452392578
+      ]
+    },
+    {
+      "mode": "heart_rate",
+      "fictional_example": "15-minute session",
+      "prediction": 80.4058837890625,
+      "interval": [
+        78.17752075195312,
+        82.63424682617188
+      ]
+    },
+    {
+      "mode": "heart_rate",
+      "fictional_example": "Longer session",
+      "prediction": 250.22434997558594,
+      "interval": [
+        247.99598693847656,
+        252.4527130126953
+      ]
+    }
+  ]
+}

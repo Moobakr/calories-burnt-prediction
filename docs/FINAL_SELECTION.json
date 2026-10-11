@@ -1,0 +1,280 @@
+{
+  "assignments_sha256": "71c3e9b3c684896622933cd522712aca81f96c30123a6ec207dd554e1f0ac978",
+  "created_at_utc": "2026-10-10T21:22:00.071531+00:00",
+  "experiment_plan_sha256": "64de5ce77cce7a4bba50b522b618a01ada530d61e33b040ec9f1d1395d7694e7",
+  "intervals_sha256": "73d5a243a287aca427de7a9a7b8fd06597d9351c6b47dd4d0abe3cc02ffe0ebf",
+  "primary_model": "xgboost_heart_rate",
+  "project_fingerprints": {
+    "calorie_estimation/__init__.py": "1959451d714e75f0523b131b8841598eeb522790aaea5b6c497494e57e5fcb4f",
+    "calorie_estimation/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "calorie_estimation/baselines.py": "c7d1bcab92e01b691ef77e61ad00553a4322a8455c525089433ff41d20b49fbc",
+    "calorie_estimation/cli.py": "a6aabde6dcc31f24c075d7c4545a33bc26a542650dfb0b2fbc11c7b42c78d980",
+    "calorie_estimation/comparison.py": "a317cf1ede518cf2ecb69c314049e28fa8b7faac5f44503374858cd473f5fe0c",
+    "calorie_estimation/config.py": "b33f70e0235e8a6a9f066c5cea158cd0692ba5d12526303253b407eeeca1d730",
+    "calorie_estimation/data.py": "fcb7317d7bd32e79cdcc7a23fd58be3c91b5a9fb3b7bbf45cb0aa5d223acefab",
+    "calorie_estimation/evaluation.py": "5dd1feba52dbbc8f0aba364192f9854248f26f28f48552669ed966913faa4c37",
+    "calorie_estimation/final_evaluation.py": "4595549edcfaabab0c0b60db3d2131c13071f90f08edfad7b19deb108f2b5c37",
+    "calorie_estimation/preprocessing.py": "5d8dfed437b89d27107afa864c7f0724d0521baaeefbb235d1981edd4a5725d5",
+    "calorie_estimation/reliability.py": "4a7c9a596573eb058a794af1b29c460fb76866504bdc022f45b8be5cd3d2fce2",
+    "configs/project.toml": "b035844946380559e6b4381c3e190ea3630a36f1f824b7c828f3291d76b425b9",
+    "data/dataset_manifest.json": "1ed33e3408d211aa8a79838c3828d652677c3669ece9cc2f6cd7e0b3bac4cc5a",
+    "pyproject.toml": "6b304e0d6a2cae9b94e78efa532f2ba89cea2f79f387d98bbde9e8c738811bef",
+    "requirements.lock.txt": "d6d038df93f0d3366cc31cefe4bd79d21f7f1e1a6ca70d3e82b0a06320e4a998",
+    "scripts/baselines.ps1": "1b8c825201eced6f7a1da9a545f1e0ca7240b630f7194d05d4e9f605a69d9752",
+    "scripts/compare-inputs.ps1": "fe21c2f53504b5eab6d392158fc6781ef0de5810b8808dd4e6d935e55e0d8a86",
+    "scripts/evaluate-setup.ps1": "d16305179ebb52f3ed63eb48aab1051094a21145eb9d1299b055998f5b4d9c8a",
+    "scripts/final-evaluate.ps1": "1a56fe76cf64af3b95878fcf5061b3efaa1aff8442bc7ba6964b8594fcfa8a47",
+    "scripts/prepare.ps1": "4947434d63e2e28ee36014a0db54122ec1c57dd17b0ffe077862133fbbfbd4bc",
+    "scripts/reliability.ps1": "425adc66c0ffa3f3046a85217c9fc3c8a4564bbc3d9773334a9a22552129f4d4",
+    "scripts/setup.ps1": "9191d71e9ce0175a3d7b623c2fe04021d1b7f126f3b87ad92c19fb9a3ee9556d",
+    "tests/test_baselines.py": "1b898c530fe8662de9ca40290c25f6c8b02f91f119157355bbf41417d117d64a",
+    "tests/test_comparison.py": "efef87a6cd8424d6abafb969c74ae48d104244514d4ddc22108b46305018da9e",
+    "tests/test_data.py": "6b36af56503879cbb91c66be873ab58efc6f683396b154a20d14a1fa63ec464c",
+    "tests/test_evaluation.py": "ae236e0ef42e706f50ebb584b25f37e2370e0876a41720ea37a17c3d4a7e560e",
+    "tests/test_final_evaluation.py": "1f3422aa6398348657d225ffbb585c8a52419414c6d1e7a413534fba97f78d29",
+    "tests/test_reliability.py": "057a4091cc728ea15db1f01114cbfd9b6987c11db87f6aae2b039ce290ca58e6"
+  },
+  "protocol": {
+    "bootstrap_method": "paired-row-percentile",
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 2026,
+    "confidence_level": 0.95,
+    "planned_pairs": [
+      [
+        "ridge_basic",
+        "ridge_full"
+      ],
+      [
+        "ridge_heart_rate",
+        "ridge_full"
+      ],
+      [
+        "xgboost_basic",
+        "xgboost_full"
+      ],
+      [
+        "xgboost_heart_rate",
+        "xgboost_full"
+      ]
+    ],
+    "primary_rule": "lowest development mean-fold MAE, then fewer input fields, then model name",
+    "quantile_method": "linear",
+    "relative_mae_margin": 0.1,
+    "threads": 1
+  },
+  "selection_uses_test_or_calibration": false,
+  "source_runs_sha256": {
+    "baseline": "e5c41e690b671c47ee06dbe9e793e6cb7cf12e5f0b12d9b09e7e2b15814eb57a",
+    "comparison": "49564defac2360e95529b2eb7b071294e0d86032103a50266f634a2c90a80a1a",
+    "reliability": "3c210adb9e9f1637776ad4ccf208c15407e6c26d0489a01c921b7d33d7265a62"
+  },
+  "source_sha256": "411400c2854c99ba508c54d05926d3f826fdb2f7d42dc9d4882b24b2a52d3600",
+  "status": "frozen_before_test_analysis",
+  "systems": [
+    {
+      "development_mean_fold_mae": 52.83321185332401,
+      "input_columns": [],
+      "model_sha256": "f380190d582032a2921087f4cc9e0988ca5084f36499db4f1603bd33089e66cb",
+      "name": "mean",
+      "threshold": null
+    },
+    {
+      "development_mean_fold_mae": 13.297502907086141,
+      "input_columns": [
+        "Duration"
+      ],
+      "model_sha256": "ecc3138db29006d8284349e86adac6642ff9be7dfefd2595c9db012e30b8d4d6",
+      "name": "ridge_duration",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "ridge_duration.joblib",
+        "model_sha256": "ecc3138db29006d8284349e86adac6642ff9be7dfefd2595c9db012e30b8d4d6",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 28.62236676767077
+      }
+    },
+    {
+      "development_mean_fold_mae": 11.987781874415901,
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration"
+      ],
+      "model_sha256": "a8c453863b42bb08cf756e7b09e142966bfc41e2d568939be45ed7850cdcae5c",
+      "name": "ridge_basic",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "ridge_basic.joblib",
+        "model_sha256": "a8c453863b42bb08cf756e7b09e142966bfc41e2d568939be45ed7850cdcae5c",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 24.71840778610985
+      }
+    },
+    {
+      "development_mean_fold_mae": 9.558344781666134,
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate"
+      ],
+      "model_sha256": "64529d26c74638ed206ec7094e154f715ea0484c3f336e47026a428dfd564582",
+      "name": "ridge_heart_rate",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "ridge_heart_rate.joblib",
+        "model_sha256": "64529d26c74638ed206ec7094e154f715ea0484c3f336e47026a428dfd564582",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 17.911271334684784
+      }
+    },
+    {
+      "development_mean_fold_mae": 8.302841963179224,
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate",
+        "Body_Temp"
+      ],
+      "model_sha256": "8fc25df553054111878c865e01019fe55c32edd4060bbbe18bff93c4f1ea7e71",
+      "name": "ridge_full",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "ridge_full.joblib",
+        "model_sha256": "8fc25df553054111878c865e01019fe55c32edd4060bbbe18bff93c4f1ea7e71",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 16.44269326814924
+      }
+    },
+    {
+      "development_mean_fold_mae": 11.312884710594764,
+      "input_columns": [
+        "Duration"
+      ],
+      "model_sha256": "be98726e908165ffc8a741784b7c911cb08cc5b339cedd18e7d2e817efacebc3",
+      "name": "xgboost_duration",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "xgboost_duration.joblib",
+        "model_sha256": "be98726e908165ffc8a741784b7c911cb08cc5b339cedd18e7d2e817efacebc3",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 26.853050231933594
+      }
+    },
+    {
+      "development_mean_fold_mae": 8.241573862565328,
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration"
+      ],
+      "model_sha256": "b6fe07220a9bfbc19679cd60589c5c09d0b23f3571b4b40feddd1749c151b1a6",
+      "name": "xgboost_basic",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "xgboost_basic.joblib",
+        "model_sha256": "b6fe07220a9bfbc19679cd60589c5c09d0b23f3571b4b40feddd1749c151b1a6",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 19.0816650390625
+      }
+    },
+    {
+      "development_mean_fold_mae": 1.080118335673506,
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate"
+      ],
+      "model_sha256": "b3a9b43dede277019abb723276bc911e8963b3ad705e8baf110ff8eaea099194",
+      "name": "xgboost_heart_rate",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "xgboost_heart_rate.joblib",
+        "model_sha256": "b3a9b43dede277019abb723276bc911e8963b3ad705e8baf110ff8eaea099194",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 2.228363037109375
+      }
+    },
+    {
+      "development_mean_fold_mae": 1.1174058119513466,
+      "input_columns": [
+        "Gender",
+        "Age",
+        "Height",
+        "Weight",
+        "Duration",
+        "Heart_Rate",
+        "Body_Temp"
+      ],
+      "model_sha256": "c325c8beb0566d71e4709bfb30c9c15de816982a89586f4104d78ba1aa0c0eea",
+      "name": "xgboost_full",
+      "threshold": {
+        "audit_labels_used_for_quantile": false,
+        "audit_rows": 1500,
+        "calibration_roles_sha256": "aca959af3b9f6b44f034fe281a19a75c1696bde989d09d8474bf7bd0b03ea345",
+        "fit_rows": 1500,
+        "method": "absolute-residual-split-conformal-v1",
+        "model_artifact": "xgboost_full.joblib",
+        "model_sha256": "c325c8beb0566d71e4709bfb30c9c15de816982a89586f4104d78ba1aa0c0eea",
+        "nominal_coverage": 0.9,
+        "rank_one_based": 1351,
+        "refit_using_audit_allowed": false,
+        "threshold": 2.283203125
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "dataset_id": "supplied-exercise-benchmark-v1",
+  "filename": "exercise.csv",
+  "sha256": "411400c2854c99ba508c54d05926d3f826fdb2f7d42dc9d4882b24b2a52d3600",
+  "expected_rows": 15000,
+  "expected_modeling_table_sha256": "ddc094b3afa3776d06e1b12879e5ed044c30966cd69a36e7bc30984b6d0c906b",
+  "id_column": "User_ID",
+  "target_column": "Calories",
+  "columns": [
+    {"name": "User_ID", "type": "integer", "role": "identifier", "positive": true},
+    {"name": "Gender", "type": "category", "role": "input", "categories": ["female", "male"]},
+    {"name": "Age", "type": "integer", "role": "input", "positive": true, "interpreted_unit": "years"},
+    {"name": "Height", "type": "integer", "role": "input", "positive": true, "interpreted_unit": "cm"},
+    {"name": "Weight", "type": "integer", "role": "input", "positive": true, "interpreted_unit": "kg"},
+    {"name": "Duration", "type": "integer", "role": "input", "positive": true, "interpreted_unit": "minutes"},
+    {"name": "Heart_Rate", "type": "integer", "role": "input", "positive": true, "interpreted_unit": "beats/minute"},
+    {"name": "Body_Temp", "type": "number", "role": "input", "positive": true, "interpreted_unit": "degrees Celsius"},
+    {"name": "Calories", "type": "integer", "role": "target", "positive": true, "interpreted_unit": "kcal/session"}
+  ],
+  "provenance": {
+    "status": "likely source match; original collection unverified",
+    "likely_source": "https://www.kaggle.com/datasets/fmendes/fmendesdat263xdemos",
+    "license": "Unknown",
+    "label_generation": "Unknown",
+    "units_status": "Interpreted from legacy notebook, not independently verified",
+    "audit_date": "2026-10-10",
+    "redistribution": "Raw and derived observations excluded from Git pending license clarification"
+  },
+  "duplicate_policy": {
+    "key": "all columns except identifier, including target",
+    "keep": "first in source order",
+    "expected_removed_rows": 1,
+    "expected_output_rows": 14999
+  }
+}

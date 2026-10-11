@@ -1,0 +1,39 @@
+{
+  "status": "deferred_not_conducted",
+  "prepared_date": "2026-10-11",
+  "language": "English",
+  "protocol_version": "1.0",
+  "planned_pilot_participants": 1,
+  "planned_retained_main_participants": 6,
+  "participant_observations": 0,
+  "participant_invitations_sent_by_assistant": 0,
+  "main_protocol_frozen": false,
+  "private_response_sheets": "initialized with headers only; ignored by Git",
+  "python_tests_passed": 82,
+  "javascript_tests_passed": 4,
+  "study_tool_tests": 11,
+  "software_test_inputs": "synthetic fixtures; excluded from study evidence",
+  "live_demo_check": "running revision matches protocol",
+  "space_revision": "185803a17095ff236e235dd4053cae8a28015e9b",
+  "freeze_and_overwrite_guards_verified": true,
+  "pilot_withdrawal_failure_partial_missingness_and_denominators_verified": true,
+  "private_notes_and_participant_codes_excluded_from_automatic_aggregates": true,
+  "frozen_research_results_data_assignments_and_test_release_unchanged": true,
+  "training_fits": 0,
+  "new_test_scoring_runs": 0,
+  "measured_user_impact": "none yet",
+  "portable_freeze_without_git_verified": true,
+  "decision": {
+    "date": "2026-10-11",
+    "instruction": "skip that part",
+    "interpretation": "user requested skipping usability collection; retain kit for optional future use"
+  },
+  "optional_steps_if_resumed": [
+    "one genuine pilot",
+    "review and freeze protocol before main collection",
+    "six genuine retained main sessions",
+    "aggregate and qualitative analysis",
+    "review actual findings and limitations before publication"
+  ],
+  "remaining_required_steps_for_current_package": []
+}

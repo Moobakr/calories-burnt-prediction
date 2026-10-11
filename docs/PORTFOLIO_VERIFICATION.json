@@ -1,0 +1,31 @@
+{
+  "status": "application_materials_prepared_source_publication_pending",
+  "prepared_date": "2026-10-11",
+  "branch": "research/portfolio",
+  "pdf_pages": 2,
+  "pdf_rendered_and_visually_reviewed": true,
+  "pdf_hyperlinks": 2,
+  "case_study_figures_checked_against_frozen_aggregate_json": true,
+  "pdf_sha256": "4f7a8774ed6c593ca1175ba42525521facd4555cd047ca47aa5b1f97c814b50e",
+  "frozen_scientific_reports_unchanged_from_commit": "cb9182400f80ce6711a660a9d9879f7bde0dcda5",
+  "test_release_sha256": "f3ee8cc2c741703e14ddcaadf243085dd9419a68d4e1edecb6600796d9604435",
+  "new_training_fits": 0,
+  "new_reserved_test_scoring_runs": 0,
+  "software_checks": {
+    "python_tests_previously_passed": 82,
+    "javascript_checks_previously_passed": 4,
+    "core_research_and_demo_code_changed_in_this_packaging_step": false,
+    "repeated_here": false
+  },
+  "usability": "skipped at user request; zero participant observations",
+  "measured_user_impact": "none",
+  "ai_assistance": "substantial implementation and documentation; disclosed",
+  "public_demo_revision": "185803a17095ff236e235dd4053cae8a28015e9b",
+  "github_source_publication": "pending; HTTP 401 in assistant session and Windows credential-store access unavailable; normal PowerShell publisher prepared",
+  "source_archive_excludes": "raw/derived/split observations, fitted Python artifacts, local run outputs, private participant records, credentials and caches; original tracked public notebook is preserved",
+  "reviewer_readme": {
+    "plain_language_overview": true,
+    "local_links_checked": true,
+    "technical_instructions_moved_to": "docs/TECHNICAL_GUIDE.md"
+  }
+}

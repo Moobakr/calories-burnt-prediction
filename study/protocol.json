@@ -1,0 +1,19 @@
+{
+  "protocol_version": "1.0",
+  "prepared_date": "2026-10-11",
+  "language": "English",
+  "target_main_participants": 6,
+  "planned_pilot_participants": 1,
+  "space_url": "https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors",
+  "space_revision": "185803a17095ff236e235dd4053cae8a28015e9b",
+  "package_manifest_sha256": "7ed45f445a1ba4b64974286284304b66dd1b893d1caa8826894f3fd9d399d324",
+  "tasks": ["t1", "t2", "t3", "t4"],
+  "time_caps_seconds": {"t1": 180, "t2": 180, "t3": 120, "t4": 120},
+  "outcomes": ["unassisted", "assisted", "failed", "technical_failure", "not_attempted"],
+  "comprehension_fields": ["c_interval", "c_limitations", "c_tradeoff", "c_long_sessions"],
+  "rating_fields": ["q_ease", "q_clarity", "q_educational_usefulness"],
+  "iteration_threshold_count": 5,
+  "threshold_description": "At six retained main sessions, fewer than five unassisted successes on either navigation task or fewer than five correct first answers on any comprehension item triggers review; these are project iteration criteria, not validated standards.",
+  "task_order": "Odd main IDs: T1,T2,T3,T4; even main IDs: T2,T1,T3,T4. Reset the app before each navigation task.",
+  "design": "One moderated formative convenience-sample round; no control group, causal impact test or physiological validation. Pilot excluded."
+}

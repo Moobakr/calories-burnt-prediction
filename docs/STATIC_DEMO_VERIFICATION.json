@@ -1,0 +1,33 @@
+{
+  "status": "passed",
+  "node_version": "v24.15.0",
+  "synthetic_sessions_verified": 5854,
+  "sessions_by_mode": {
+    "basic": 1478,
+    "duration": 1062,
+    "full": 1720,
+    "heart_rate": 1594
+  },
+  "random_seed": 20261011,
+  "random_sessions_per_mode": 1000,
+  "cases": "fictional examples, uniform synthetic sessions, valid range endpoints, category levels and valid neighbours of every unique split",
+  "exact_float32_prediction_and_unclipped_interval_parity": true,
+  "all_duration_groups_and_benchmark_metadata_match": true,
+  "package_sha256": "7ed45f445a1ba4b64974286284304b66dd1b893d1caa8826894f3fd9d399d324",
+  "files_verified": 11,
+  "training_fits": 0,
+  "new_test_scoring_runs": 0,
+  "browser_visual_check": "author-reported manual confirmation: page displays and estimates update for fictional examples and measurement dropdown; no automated browser or mobile verification",
+  "hosted_deployment": "verified: public Static Space RUNNING; served inference assets match reviewed package",
+  "verified_at_utc": "2026-10-11T10:33:04.082511+00:00",
+  "hosted_revision": "185803a17095ff236e235dd4053cae8a28015e9b",
+  "host": "https://moobakr-calorie-lab-fewer-sensors.static.hf.space",
+  "space_url": "https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors",
+  "pinned_repository_file_digests_verified": 11,
+  "served_file_digests_verified": 9,
+  "hosted_html_matches_after_verified_provider_creator_id_script": true,
+  "public_repository_file_allowlist_verified": true,
+  "python_unit_tests_passed": 71,
+  "javascript_tests_passed": 4,
+  "frozen_research_results_and_release_unchanged": true
+}
