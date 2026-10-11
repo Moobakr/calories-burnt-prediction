@@ -1,2 +1,0 @@
-# Separate serving dependency; the research environment lock is unchanged.
-waitress==3.0.2
