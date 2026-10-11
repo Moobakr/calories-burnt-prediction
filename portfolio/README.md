@@ -19,7 +19,7 @@ The strongest supported contribution is an auditable comparison of input require
 
 ## Finish source publication
 
-`PUBLISH_PORTFOLIO_BRANCH.ps1`, beside the project, verifies the reviewed commit, clean tree, intended repository and private-file exclusions. It can check offline, then push only `research/portfolio` and open/reuse a **draft** PR against `main`. The branch contains the complete research history; pushing it does not require publishing every intermediate branch. Existing PRs and branches are preserved. Nothing merges automatically.
+`PUBLISH_PORTFOLIO_BRANCH.ps1`, beside the project, verifies the reviewed commit, clean tree, intended repository and private-file exclusions. It can check offline, then push only `research/portfolio` and open/reuse a **draft** PR against `main`. With `-PublishMain`, the helper instead creates a ready PR, merges that exact reviewed revision while preserving history, verifies it is on main, and adds the demo link to the repository description. The branch contains the complete research history; pushing it does not require publishing every intermediate branch. Existing PRs and branches are preserved. Without `-PublishMain`, nothing merges automatically.
 
 Run from the deliverables folder in the normal PowerShell session where GitHub authentication works:
 
@@ -28,7 +28,7 @@ Run from the deliverables folder in the normal PowerShell session where GitHub a
 & .\PUBLISH_PORTFOLIO_BRANCH.ps1
 ```
 
-After publication, review the draft and confirm the source link resolves to the research revision before using it in an application. The existing reproducibility draft PR is not automatically closed or merged. If upstream main has advanced outside this branch's ancestry, the helper stops rather than forcing changes. Final merging and program-specific submission remain separate actions.
+After publication, review the draft and confirm the source link resolves to the research revision before using it in an application. The existing reproducibility draft PR is not automatically closed or merged. If upstream main has advanced outside this branch's ancestry, the helper stops rather than forcing changes. Program-specific submission remains a separate action.
 
 ## Using the package
 

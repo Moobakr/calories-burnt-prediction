@@ -6,7 +6,7 @@ These drafts describe the AI-assisted project and its verified outputs. Review w
 
 **Calorie Lab - Sensor Requirements and Reliability** | AI-assisted applied ML project | 2026
 Python, scikit-learn, XGBoost, JavaScript, Hugging Face Static Spaces
-[Demo](https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors) · [Existing repository; research revision publication pending](https://github.com/Moobakr/calories-burnt-prediction)
+[Demo](https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors) · [Project source](https://github.com/Moobakr/calories-burnt-prediction)
 
 - Developed an AI-assisted benchmark study comparing four input sets with shared development folds, matched XGBoost search budgets and frozen final evaluation; the six-field heart-rate model achieved test MAE 0.978 versus 1.032 for seven full inputs across 3,000 records.
 - Documented a reliability gap: nominal 90% intervals covered 90.67% overall but 79.54% for long sessions; deployed browser inference on Hugging Face and verified exact Python parity on 5,854 synthetic cases.

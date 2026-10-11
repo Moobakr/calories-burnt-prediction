@@ -2,7 +2,7 @@
 
 **Moobakr | AI-assisted applied machine learning project | 11 October 2026**
 
-[Live demo](https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors) · [Existing repository](https://github.com/Moobakr/calories-burnt-prediction). The updated research source is packaged locally; GitHub publication remains pending. No usability study was conducted.
+[Live demo](https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors) · [Project source](https://github.com/Moobakr/calories-burnt-prediction). No usability study was conducted.
 
 ## Question and contribution
 

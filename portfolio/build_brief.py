@@ -116,8 +116,8 @@ def build(output):
     p("The author supplied the existing notebook/data, directed project choices, selected free hosting, completed account authentication and checked basic live interaction. Research code, evaluation tooling and documentation were produced with substantial AI-assistant support. Project ownership does not establish independent mastery of every implementation detail.")
     p("The usability study was skipped at the author's request: <b>no participant results or measured user benefit</b> exist. No clinical validity, adoption, health improvement, cost savings or new algorithm is claimed. Row bootstrap intervals assume exchangeability and omit training uncertainty. A documented measured-data replication would be a separate future study.")
     p("Explore the evidence", "HeadCustom")
-    p('<link href="https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors" color="#164A3E">Live demo: huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors</link><br/><link href="https://github.com/Moobakr/calories-burnt-prediction" color="#164A3E">Existing repository: github.com/Moobakr/calories-burnt-prediction</link>', "SmallCustom")
-    p("Updated GitHub research source: publication pending. The accompanying source archive contains final evaluation, reliability and deployment verification reports, exact aggregate metrics and the authorship record.", "SmallCustom")
+    p('<link href="https://huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors" color="#164A3E">Live demo: huggingface.co/spaces/Moobakr/calorie-lab-fewer-sensors</link><br/><link href="https://github.com/Moobakr/calories-burnt-prediction" color="#164A3E">Project source: github.com/Moobakr/calories-burnt-prediction</link>', "SmallCustom")
+    p("The repository and accompanying source archive contain the evaluation protocol, final and reliability reports, aggregate metrics, deployment checks and an explicit contribution record.", "SmallCustom")
     def footer(canvas, doc):
         canvas.saveState()
         canvas.setStrokeColor(colors.HexColor("#D8E0DA"))
