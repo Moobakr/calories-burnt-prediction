@@ -13,7 +13,7 @@ groups and workout durations?
 **Status:** items 3–8 provide reproducible preparation, frozen partitions,
 shared development CV folds, mean/Ridge baselines and a matched XGBoost input
 comparison, subgroup/noise/interval audits and frozen final test evaluation.
-**71 Python tests and four JavaScript checks pass.** The development-selected heart-rate XGBoost system has
+**81 Python tests and four JavaScript checks pass.** The development-selected heart-rate XGBoost system has
 test MAE **0.978**, versus **1.032** for full inputs. Omitting temperature
 passes the predefined benchmark rule; omitting both sensors fails it.
 See [the final report](docs/FINAL_EVALUATION_REPORT.md) for all nine systems,
@@ -100,6 +100,15 @@ python -m venv .venv
 explicit alternative locations. Defaults resolve relative to this checkout,
 regardless of the calling directory after editable installation. The installed
 console command `calorie-estimation` provides the same CLI.
+
+## Usability study (item 10)
+
+The [English study kit](study/README.md) is ready: one excluded pilot, six
+first-time adult volunteers, four tasks, a moderator rubric and custom feedback
+questions. Private response templates, protocol freeze and aggregate analysis
+commands are included. **No participant sessions or impact results exist yet.**
+The current checkout has blank response sheets in ignored `study/private/round-1/`.
+Start with the pilot; freeze the reviewed protocol before main data collection.
 
 ## Interactive demo
 
@@ -191,6 +200,7 @@ artifacts. Reconstructed experiments need their own verified source snapshot.
 | `tests/` | Synthetic fixtures for failure modes and repeatability |
 | `demo/` | Responsive interface, browser evaluator, retained Docker template and verified-package publisher |
 | `docs/` | Audit, research brief, experiment plan and implementation verification |
+| `study/` | English usability protocol, participant/moderator guides, blank templates; real responses stay in ignored `study/private/` |
 | `notebooks/legacy/` | Archived GitHub notebook and optional ignored local reference; never executed by these commands |
 
 The four input sets are duration only; basic demographic measurements plus

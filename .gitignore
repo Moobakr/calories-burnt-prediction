@@ -18,3 +18,5 @@ runs/*
 !runs/.gitkeep
 .pytest_cache/
 .cache/
+study/private/*
+!study/private/.gitkeep
