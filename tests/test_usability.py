@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from calorie_estimation import usability as study
 
@@ -161,6 +162,16 @@ class UsabilityTests(unittest.TestCase):
             self.assertNotIn("P01", report)
             with self.assertRaises(FileExistsError):
                 study.summarize(directory, output)
+
+    def test_portable_kit_can_freeze_without_git_installed(self):
+        with tempfile.TemporaryDirectory(dir=study.STUDY / "private", prefix="test_") as temp:
+            directory = Path(temp) / "round"
+            study.initialize(directory)
+            with patch.object(study.subprocess, "run", side_effect=FileNotFoundError):
+                study.freeze(directory)
+            record = json.loads((directory / "protocol-freeze.json").read_bytes())
+            self.assertEqual(record["source_commit"], "unavailable: Git not installed")
+            self.assertIsNone(record["source_study_files_clean"])
 
 
 if __name__ == "__main__":

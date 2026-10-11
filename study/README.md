@@ -9,7 +9,7 @@ The small moderated round and think-aloud approach follow [GOV.UK planning guida
 ## Run the study
 
 1. Read [MODERATOR_GUIDE.md](MODERATOR_GUIDE.md). Send only [PARTICIPANT_GUIDE.md](PARTICIPANT_GUIDE.md) to volunteers. The invitation text below is ready to copy; no invitations have been sent by the assistant.
-2. From the project directory, initialize the ignored local response folder. **This working checkout already has blank `study/private/round-1/` sheets; skip initialization if they exist.** The command is for a fresh copy and refuses to replace existing records:
+2. From the project directory, initialize the ignored local response folder. **The prepared research checkout already has blank `study/private/round-1/` sheets; skip initialization there. In a fresh or standalone copy, run the command below.** It refuses to replace existing records:
 
    ```powershell
    & .\.venv\Scripts\python.exe -m calorie_estimation.usability init --directory study/private/round-1

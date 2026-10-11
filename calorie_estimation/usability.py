@@ -123,12 +123,16 @@ def freeze(directory):
     if any(row["cohort"] == "main" for row in rows):
         raise ValueError("Freeze before recording any main participant, including a withdrawal")
     command = ["git", "-c", f"safe.directory={ROOT.as_posix()}", "rev-parse", "HEAD"]
-    result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
-    status = subprocess.run(["git", "-c", f"safe.directory={ROOT.as_posix()}", "status", "--porcelain", "--", *FROZEN_FILES],
-                            cwd=ROOT, capture_output=True, text=True)
+    try:
+        result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)
+        status = subprocess.run(["git", "-c", f"safe.directory={ROOT.as_posix()}", "status", "--porcelain", "--", *FROZEN_FILES],
+                                cwd=ROOT, capture_output=True, text=True)
+        commit = result.stdout.strip() if result.returncode == 0 else "unavailable: source archive"
+        clean = not status.stdout.strip() if status.returncode == 0 else None
+    except OSError:
+        commit, clean = "unavailable: Git not installed", None
     value = {"protocol_version": plan["protocol_version"], "frozen_at_utc": datetime.now(timezone.utc).isoformat(),
-             "source_commit": result.stdout.strip() if result.returncode == 0 else "unavailable: source archive",
-             "source_study_files_clean": not status.stdout.strip() if status.returncode == 0 else None,
+             "source_commit": commit, "source_study_files_clean": clean,
              "files_sha256": {name: digest(ROOT / name) for name in FROZEN_FILES},
              "space_revision": plan["space_revision"], "package_manifest_sha256": plan["package_manifest_sha256"],
              "registration": "local hash/timestamp record; not an external preregistration"}

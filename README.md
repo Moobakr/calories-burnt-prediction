@@ -13,7 +13,7 @@ groups and workout durations?
 **Status:** items 3–8 provide reproducible preparation, frozen partitions,
 shared development CV folds, mean/Ridge baselines and a matched XGBoost input
 comparison, subgroup/noise/interval audits and frozen final test evaluation.
-**81 Python tests and four JavaScript checks pass.** The development-selected heart-rate XGBoost system has
+**82 Python tests and four JavaScript checks pass.** The development-selected heart-rate XGBoost system has
 test MAE **0.978**, versus **1.032** for full inputs. Omitting temperature
 passes the predefined benchmark rule; omitting both sensors fails it.
 See [the final report](docs/FINAL_EVALUATION_REPORT.md) for all nine systems,
