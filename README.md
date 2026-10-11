@@ -13,7 +13,7 @@ groups and workout durations?
 **Status:** items 3–8 provide reproducible preparation, frozen partitions,
 shared development CV folds, mean/Ridge baselines and a matched XGBoost input
 comparison, subgroup/noise/interval audits and frozen final test evaluation.
-**63 tests pass.** The development-selected heart-rate XGBoost system has
+**71 tests pass.** The development-selected heart-rate XGBoost system has
 test MAE **0.978**, versus **1.032** for full inputs. Omitting temperature
 passes the predefined benchmark rule; omitting both sensors fails it.
 See [the final report](docs/FINAL_EVALUATION_REPORT.md) for all nine systems,
@@ -101,6 +101,24 @@ explicit alternative locations. Defaults resolve relative to this checkout,
 regardless of the calling directory after editable installation. The installed
 console command `calorie-estimation` provides the same CLI.
 
+## Interactive demo
+
+The Calorie Lab implementation uses the exact frozen XGBoost pipelines, with
+four input modes, validated ranges, fictional examples, fixed reference
+intervals and the observed error/coverage limitations. Run locally with:
+
+```powershell
+& .\scripts\demo.ps1
+```
+
+Open `http://127.0.0.1:7860`; stop with Ctrl+C. The separate serving dependency
+is Waitress 3.0.2. This does not train models or score the reserved test again.
+A Docker Space package targets `Moobakr/calorie-lab-fewer-sensors` on Hugging
+Face. API/parity and package checks passed; cloud deployment, container
+execution and visual browser verification remain pending. See the
+[demo and deployment guide](docs/DEMO_GUIDE.md) and
+[verification record](docs/DEMO_VERIFICATION.json).
+
 `evaluate-setup.ps1` runs preparation and the test suite, then creates and
 verifies frozen partitions: **8,999 development / 3,000 calibration / 3,000
 test**, with five development-only CV folds shared across all four feature
@@ -161,6 +179,7 @@ artifacts. Reconstructed experiments need their own verified source snapshot.
 | `configs/project.toml` | Four input sets, evaluation settings, Ridge grid, fixed XGBoost search, timing and reliability protocols |
 | `data/dataset_manifest.json` | Frozen input fingerprint, schema, units and provenance limitations |
 | `tests/` | Synthetic fixtures for failure modes and repeatability |
+| `demo/` | Responsive interface, Docker Space template, serving dependency and verified-package publisher |
 | `docs/` | Audit, research brief, experiment plan and implementation verification |
 | `notebooks/legacy/` | Archived GitHub notebook and optional ignored local reference; never executed by these commands |
 
